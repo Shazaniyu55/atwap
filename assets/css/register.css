@@ -4,15 +4,15 @@
 :root{
 
      
-    --st-patricks-blue: hsl(133, 94%, 31%);
+    --st-patricks-blue: hsl(39, 100%, 52%);
     --amaranth-purple: hsl(0, 0%, 2%);
-    --royal-blue-dark: hsl(133, 94%, 31%);
+    --royal-blue-dark: hsl(39, 100%, 52%);
     --chrome-yellow: hsl(39, 100%, 52%);
-    --space-cadet-1: hsl(133, 94%, 31%);
-    --space-cadet-2: hsl(133, 94%, 31%);
+    --space-cadet-1: hsl(39, 100%, 52%);
+    --space-cadet-2: hsl(39, 100%, 52%);
     --winter-sky_50: hsla(0, 0%, 2%);
     --purple-navy: hsl(236, 26%, 43%);
-    --ksu-purple: hsl(133, 94%, 31%);
+    --ksu-purple: hsl(39, 100%, 52%);
     --winter-sky: hsl(0, 0%, 2%);
     --razzmatazz: hsl(0, 0%, 2%);
     --platinum: hsl(0, 0%, 90%);
@@ -33,7 +33,7 @@
     font-family: 'Poppins', sans-serif;
 }
 body{
-   background-color: hsl(133, 94%, 31%);
+   background-color: hsl(39, 100%, 52%);
    background-image: url("../images/hero-bg.png");
     background-size: cover;
     background-repeat: no-repeat;

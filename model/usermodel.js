@@ -54,15 +54,10 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: null
     },
+
    
-    
-    
-    
-  
-    payments: [{ 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Payment' 
-    }],
+   
+
 }, {
     timestamps: true
 });

@@ -13,7 +13,7 @@ require('dotenv').config()
 //connects to the mongoDB databse
 mongoose.connect(process.env.MONGODB_CONNECTION).then(()=>{console.log("Database Connected")}).catch((err)=>{console.log(err)});
 app.use (express.static(path.join(__dirname, "assets")));
-app.use(cors({origin: "http://localhost:3100/", methods: 'GET, POST, PUT, DELETE', allowedHeaders:'Content-Type,authorization'}));
+app.use(cors());
 
 app.use(session({
     secret: process.env.SESSION_SECRETE,
@@ -47,6 +47,9 @@ app.get('/reg2', (req, res)=>{
 })
 
 
+app.get('/about', (req, res)=>{
+    res.render('about')
+})
 app.get('/blog', (req, res)=>{
     res.render('blog')
 })

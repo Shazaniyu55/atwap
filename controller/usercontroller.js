@@ -173,13 +173,14 @@ const resetPassword = async (req, res) => {
 
 const signUp = async (req, res) => {
     try {
-      const { fullname, phoneNumber, country, accountBank, businessType, email, password } = req.body;
+      const { fullname, phoneNumber, email,  accountBank,country, businessType,  password } = req.body;
   
       if (!fullname || !phoneNumber || !country   || !accountBank || !email || !password || !businessType) {
-        return res.status(400).json({ status: "Failed", message: "Please fill out all fields." });
+        //return res.status(400).json({ status: "Failed", message: "Please fill out all fields." });
+        createuser()
       }
   
-      let imageURL = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
+      //let imageURL = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
   
     
 
@@ -194,7 +195,7 @@ const signUp = async (req, res) => {
         email,
         businessType,
         password,
-        image: imageURL // Add imageURL to user model if applicable
+        
       });
 
     
@@ -218,7 +219,7 @@ const signUp = async (req, res) => {
                 country: user.country,
                 businessType: user.businessType,
                 accountBank: user.accountBank,
-                image:user.image,
+               
                
                
                 
