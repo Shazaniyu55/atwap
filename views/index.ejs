@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATWAP</title>
+  
+<link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+
+<!-- 
+  - custom css link
+-->
+<link rel="stylesheet" href="/css/index.css">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+<!-- 
+  - google font link
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Source+Sans+Pro:wght@600;700&display=swap"
+  rel="stylesheet">
+
+</head>
+<body id="top">
+    <!-- 
+    - #HEADER
+  -->
+
+  <header class="header" data-header>
+    <div class="container">
+
+      <div class="overlay" data-overlay></div>
+
+      <a href="#">
+        <h1 class="logo">ATWAP</h1>
+      </a>
+
+      <nav class="navbar" data-navbar>
+        <div class="navbar-top">
+          <a href="#" class="logo">ATWAP</a>
+
+          <button class="nav-close-btn" aria-label="Close Menu" data-nav-close-btn>
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+        </div>
+
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <a href="/" class="navbar-link" data-navbar-link>Home</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="/about" class="navbar-link" data-navbar-link>About</a>
+          </li>
+
+
+          <li class="navbar-item">
+            <a href="/blog" class="navbar-link" data-navbar-link>Blog</a>
+          </li>
+
+          
+
+          
+
+          <li class="navbar-item">
+            <a href="/contact" class="navbar-link" data-navbar-link>Contact Us</a>
+          </li>
+
+          
+
+        </ul>
+
+      </nav>
+
+      <a href="/login" class="btn">     
+        <span>Login In</span>
+      </a>
+
+      <button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn>
+        <ion-icon name="menu-outline"></ion-icon>
+      </button>
+
+    </div>
+  </header>
+
+
+  <main>
+    <article>
+        <section class="hero" id="home">
+
+            <div class="container">
+
+                <div class="hero-content" style="position: relative; left: 0;">
+                    <p class="hero-subtitle" style="opacity: 0; transition: all 2s ease-in-out;">Welcome to the ATWAP.</p>
+                    <h2 class="h2 hero-title" style="opacity: 0; transition: all 2.5s ease-in-out;">"The Simplest, Fastest and most Lucrative Income Generator"</h2>
+                    <p class="hero-text" style="opacity: 0; transition: all 3s ease-in-out;">
+                        "Discover."
+                    </p>
+                    <a href="/login"><button class="btn">Get Started</button></a>
+                </div>
+
+                <script>
+                    function animateHeroContent() {
+                        const heroContent = document.querySelector('.hero-content');
+                        const subtitle = document.querySelector('.hero-subtitle');
+                        const title = document.querySelector('.hero-title');
+                        const text = document.querySelector('.hero-text');
+                        
+                        subtitle.style.left = "0";
+                        subtitle.style.opacity = "1";
+                        
+                        setTimeout(() => {
+                            title.style.left = "0";
+                            title.style.opacity = "1";
+                        }, 500); // 0.5 seconds delay for title
+                
+                        setTimeout(() => {
+                            text.style.left = "0";
+                            text.style.opacity = "1";
+                        }, 1000); // 1 second delay for text
+                
+                        setTimeout(() => {
+                            heroContent.style.transition = "all 2s ease-in-out";
+                            heroContent.style.left = "-100%";
+                        }, 10000); // Stay for 10 seconds
+                
+                        setTimeout(() => {
+                            heroContent.style.left = "0";
+                        }, 12000); // Move back after 2 seconds
+                    }
+                
+                    window.onload = animateHeroContent;
+                </script>
+
+        <figure class="hero-banner">
+            <img src="/images/money.svg" width="1094" height="929" loading="lazy" alt="hero-banner"
+            class="w-100 banner-animation">
+        </figure>
+
+
+            </div>
+        
+
+            </section>
+
+             <!-- 
+        - #ABOUT
+      -->
+
+      <section class="section about" id="about">
+        <div class="container">
+
+          <figure class="about-banner">
+            <img src="/images/search.svg" width="900" height="832" loading="lazy" alt="about banner"
+              class="w-100 banner-animation">
+          </figure>
+
+          <div class="about-content">
+
+            <h2 class="h2 section-title underline">WHY USE OUR PRODUCT</h2>
+
+            <p class="about-text">
+              Have you been looking the way to level up socio-economically?
+              A means to escape the rat race, rise above poverty and lack, become financially capable, create material and financial abundance, and achieve high socio-economic status and relevance?
+              
+              Are you an unemployed graduate looking for a substantial steady income?
+              Are you an undergraduate looking for a way to make good money while in school?.
+            </p>
+
+            <p class="about-text">
+              Are you currently an employee dreaming of being your own boss and becoming financially free?
+              Are you a NYSC corper thinking of how to set yourself up for life after service?
+              Are you an entrepreneurial-minded goal looking for the opportunity and means to start your own business?
+            </p>
+
+            <ul class="stats-list">
+
+              <li class="stats-card">
+                <p class="h3 stats-title">+875</p>
+
+                <p class="stats-text">Satisfied Clients</p>
+              </li>
+
+              <li class="stats-card">
+                <p class="h3 stats-title">+94</p>
+
+                <p class="stats-text">Project Lunched</p>
+              </li>
+
+              <li class="stats-card">
+                <p class="h3 stats-title">+9</p>
+
+                <p class="stats-text">Years Completed</p>
+              </li>
+
+            </ul>
+
+          </div>
+
+        </div>
+      </section>
+
+
+    </article>
+  </main>
+
+
+  <!-- 
+    - #FOOTER
+  -->
+
+  <footer class="footer">
+
+    <div class="footer-top section">
+      <div class="container">
+
+        <div class="footer-brand">
+
+          <a href="#" class="logo">ATWAP</a>
+
+          <p class="text">
+            ""
+          </p>
+
+          <ul class="social-list">
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-facebook"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-instagram"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-twitter"></ion-icon>
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+        <ul class="footer-list">
+
+          <li>
+            <p class="footer-list-title">Our links</p>
+          </li>
+
+          <li>
+            <a href="/views/index.ejs" class="footer-link">Home</a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">About Us</a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">Services</a>
+          </li>
+
+
+          <li>
+            <a href="#" class="footer-link">Blog</a>
+          </li>
+
+        </ul>
+
+        <!-- <ul class="footer-list">
+
+          <li>
+            <p class="footer-list-title">Our Services</p>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">Strategy & Research</a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">Web Development</a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">Web Solution</a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">Digital Marketing</a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">App Design</a>
+          </li>
+
+        </ul> -->
+
+        <ul class="footer-list">
+
+          <li>
+            <p class="footer-list-title">Other links</p>
+          </li>
+
+          <li>
+            <a href="/FAQ" class="footer-link">FAQ</a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">Privacy Policy</a>
+          </li>
+
+          <li>
+            <a href="/TERMS" class="footer-link">Terms & Conditions</a>
+          </li>
+
+
+        </ul>
+
+        <ul class="footer-list">
+
+      
+
+          <div class="footer-container">
+           
+           
+            <div class="sec contactBx">
+               
+                <ul class="info">
+                  <li>
+                    <p class="footer-list-title">Support</p>
+                  </li>
+                    <li>
+                      <a href="/contact">
+                        <span><i class='bx bx-message'></i></span>
+                      </a>
+                      
+                      
+                        <p></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+            
+
+         
+
+          
+
+        </ul>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="copyright">
+        &copy; 2024 <a href="https://www.adaintech.com/" class="copyright-link">AdaInTechnologies</a>. All Right Reserved
+      </p>
+    </div>
+
+  </footer>
+
+
+
+  <!-- 
+    - #GO TO TOP
+  -->
+
+  <a href="#top" class="go-top  active" aria-label="Go To Top" data-go-top>
+    <ion-icon name="arrow-up-outline"></ion-icon>
+  </a>
+
+
+  <!-- 
+    - custom js link
+  -->
+  <script src="/js/script.js"></script>
+  <script src="/js/index.js"></script>
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
