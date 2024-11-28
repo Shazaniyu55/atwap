@@ -174,10 +174,10 @@ const resetPassword = async (req, res) => {
 const signUp = async (req, res) => {
     try {
       const { fullname, phoneNumber, email,  accountBank,country, businessType,  password } = req.body;
-  
+  console.log(fullname, phoneNumber)
       if (!fullname || !phoneNumber || !country   || !accountBank || !email || !password || !businessType) {
-        //return res.status(400).json({ status: "Failed", message: "Please fill out all fields." });
-        createuser()
+        return res.status(400).json({ status: "Failed", message: "Please fill out all fields." });
+        
       }
   
       //let imageURL = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';

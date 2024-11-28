@@ -24,7 +24,7 @@ app.use(session({
 }));
 
 //parses data  to json
-app.use(express.json());
+//app.use(express.json());
 app.use(bodyParser.json());
 app.use(express.urlencoded({extended: true}));
 
@@ -54,6 +54,9 @@ app.get('/blog', (req, res)=>{
     res.render('blog')
 })
 
+app.get('/dashboard', (req, res)=>{
+    res.render('dashboard/html/admin')
+})
 
 app.get('/contact', (req, res)=>{
     res.render('contact')

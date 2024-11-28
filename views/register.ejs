@@ -92,7 +92,7 @@ h2{
         <div class="top">
             <header id="message">Sign Up</header>
         </div>
-        <form id="signUpForm" >
+        <form id="signUpForm" enctype="multipart/form-data" >
             <!-- Step 1 -->
             <div class="step" id="step1">
                 <h2>Step 1: Personal Information</h2>
@@ -243,44 +243,55 @@ showStep(currentStep);
 <script>
 
 
+document.getElementById('signUpForm').addEventListener('submit', async function(event) {
+    event.preventDefault(); // Prevent default form submission
+    // Show preloader
+    document.getElementById('preloader').style.display = 'flex';
 
-    const API_URL = 'http://localhost:3100/api/auth/register';
-    
-    document.getElementById('signUpForm').addEventListener('submit', async function(event) {
-        event.preventDefault(); // Prevent the default form submission
-        //show preloader
-        document.getElementById('preloader').style.display = 'flex';
-    
-        const formData = new FormData(this); // Create FormData from the form
-    
-        try {
-            const response = await fetch(API_URL, {
-                method: 'POST',
-                body: formData, // Send FormData directly without setting Content-Type header
-            });
-    
-            const result = await response.json();
-    
-            if (response.ok) {
-                document.getElementById('message').textContent = result.message;
-                document.getElementById('message').style.color = 'green';
-                // Optionally redirect to login page or another page
-                localStorage.setItem('token', result.token)
-                alert('registered')
-                //window.location.href = 'http://localhost:3500/api/auth/subscriptionreferall';
-            } else {
-                document.getElementById('message').textContent = result.message;
-                document.getElementById('message').style.color = 'red';
+    const formData = new FormData(this); // Create FormData from the form
+    console.log(formData);
+    // Log form data for debugging
+// Convert FormData to an object
+const formDataObject = Object.fromEntries(formData.entries());
+
+    try {
+        const response = await fetch('http://localhost:3100/api/auth/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json' // Indicate JSON payload
+            },
+            body: JSON.stringify(formDataObject) 
+        });
+
+        const result = await response.json(); // Parse the response JSON
+
+        if (response.ok) {
+            // Success: Update UI or redirect
+            document.getElementById('message').textContent = result.message || 'Registration successful!';
+            document.getElementById('message').style.color = 'green';
+
+            // Store token in localStorage if returned
+            if (result.token) {
+                localStorage.setItem('token', result.token);
             }
-        } catch (error) {
-            console.log(error);
-            document.getElementById('message').textContent = 'An error occurred. Please try again.';
+
+            alert('Registered successfully!');
+            // Optionally, redirect to login or another page
+            window.location.href = '/login';
+        } else {
+            // Error: Display the message returned by the server
+            document.getElementById('message').textContent = result.message || 'An error occurred.';
             document.getElementById('message').style.color = 'red';
-        }finally{
-             //hode preloader
-             document.getElementById('preloader').style.display = 'none';
         }
-    });
+    } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('message').textContent = 'An error occurred. Please try again.';
+        document.getElementById('message').style.color = 'red';
+    } finally {
+        // Hide preloader
+        document.getElementById('preloader').style.display = 'none';
+    }
+});
 
 
    
