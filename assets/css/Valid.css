@@ -151,6 +151,13 @@ header{
     left: 17px;
     color: #fff;
 }
+
+.input-box img{
+    position: relative;
+    top: -35px;
+    left: 80px;
+    color: #fff;
+}
 .submit{
     font-size: 15px;
     font-weight: 500;

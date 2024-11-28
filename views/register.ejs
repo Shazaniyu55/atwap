@@ -269,15 +269,16 @@ const formDataObject = Object.fromEntries(formData.entries());
             // Success: Update UI or redirect
             document.getElementById('message').textContent = result.message || 'Registration successful!';
             document.getElementById('message').style.color = 'green';
+            window.location.href = `http://localhost:3100/api/auth/dashboard/${result.user.id}`;
 
-            // Store token in localStorage if returned
-            if (result.token) {
-                localStorage.setItem('token', result.token);
-            }
+            // // Store token in localStorage if returned
+            // if (result.token) {
+            //     localStorage.setItem('token', result.token);
+            // }
 
-            alert('Registered successfully!');
-            // Optionally, redirect to login or another page
-            window.location.href = '/login';
+            // alert('Registered successfully!');
+            // // Optionally, redirect to login or another page
+           
         } else {
             // Error: Display the message returned by the server
             document.getElementById('message').textContent = result.message || 'An error occurred.';

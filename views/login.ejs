@@ -82,7 +82,14 @@
             <div class="input-box">
                <input type="submit" class="submit" value="Sign In">
             </div>
-            </form>
+            </form> <br>
+
+            <div class="input-box">
+                <button onclick="signIn()" class="submit" >Sign In with google</button>
+                <img src="/images/google.png" alt="google_img" style="width: 20px; height: 20px;">
+            </div>
+
+
             
             <div class="two-col">
                 <div class="one">
@@ -103,6 +110,52 @@
         
     </div>
 </div>   
+
+
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+    import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+  
+    // Your Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyC58ctzPH31biuCWwsXqHBdt8uQETtrppw",
+      authDomain: "valkorabuild.firebaseapp.com",
+      projectId: "valkorabuild",
+      storageBucket: "valkorabuild.firebasestorage.app",
+      messagingSenderId: "425972148245",
+      appId: "1:425972148245:web:fe57163bf2d97da7a2461c",
+      measurementId: "G-L76EFZVZ1L"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+  
+    // Define signIn function globally
+    window.signIn = async function() {
+      const provider = new GoogleAuthProvider();
+      try {
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+        //window.location.href = `http://localhost:3100/api/auth/dashboard/}`;
+
+        console.log("User:", user);
+
+        if(!user){
+         let showsignin = document.querySelector('.nav-button') 
+         showsignin.parentElement.remove()     
+        }else{
+
+        }
+      } catch (error) {
+        console.error("Error during sign-in:", error);
+      }
+    };
+
+
+</script>
+
 
 
 <!-- hambureger -->

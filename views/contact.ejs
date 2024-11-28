@@ -27,6 +27,38 @@
 
         <!-- Template Stylesheet -->
         <link href="/css/about.css" rel="stylesheet">
+
+
+        <style>
+            /* Add this CSS to style the preloader */
+         .preloader {
+             position: fixed;
+             top: 0;
+             left: 0;
+             width: 100%;
+             height: 100%;
+             background-color: rgba(255, 255, 255, 0.8);
+             display: none; /* Hidden by default */
+             justify-content: center;
+             align-items: center;
+             z-index: 9999;
+         }
+         
+         .spinner {
+             border: 4px solid rgba(0, 0, 0, 0.1);
+             border-left: 4px solid #3498db;
+             border-radius: 50%;
+             width: 40px;
+             height: 40px;
+             animation: spin 1s linear infinite;
+         }
+         
+         @keyframes spin {
+             0% { transform: rotate(0deg); }
+             100% { transform: rotate(360deg); }
+         }
+         
+        </style>
     </head>
 
     <body>
@@ -163,21 +195,21 @@
                         <div class="col-md-6">
                             <div class="contact-form">
                                 <div id="success"></div>
-                                <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                                <form  id="signUpForm" >
                                     <div class="control-group">
-                                        <input type="text" class="form-control" id="name" placeholder="Your Name" required="required" data-validation-required-message="Please enter your name" />
+                                        <input type="text" class="form-control" name="fullname" id="name" placeholder="Your Name" required="required" data-validation-required-message="Please enter your name" />
                                         <p class="help-block text-danger"></p>
                                     </div>
                                     <div class="control-group">
-                                        <input type="email" class="form-control" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" />
+                                        <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" />
                                         <p class="help-block text-danger"></p>
                                     </div>
                                     <div class="control-group">
-                                        <input type="text" class="form-control" id="subject" placeholder="Subject" required="required" data-validation-required-message="Please enter a subject" />
+                                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required="required" data-validation-required-message="Please enter a subject" />
                                         <p class="help-block text-danger"></p>
                                     </div>
                                     <div class="control-group">
-                                        <textarea class="form-control" id="message" placeholder="Message" required="required" data-validation-required-message="Please enter your message"></textarea>
+                                        <textarea class="form-control" id="message" name="message" placeholder="Message" required="required" data-validation-required-message="Please enter your message"></textarea>
                                         <p class="help-block text-danger"></p>
                                     </div>
                                     <div>
@@ -247,9 +279,61 @@
                
             </div>
             <!-- Footer End -->
+             <!-- preloader -->
+        <div id="preloader" class="preloader">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+        </div>
 
             <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
         </div>
+
+
+        <script>
+
+            document.getElementById('signUpForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent the default form submission
+                //show preloader
+            document.getElementById('preloader').style.display = 'flex';
+
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+       
+           
+            try {
+                const token = localStorage.getItem('token');
+                console.log(token)
+                const response = await fetch('http://localhost:3100/api/auth/message', { // Adjust URL based on your route
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization':  `Bearer ${token}`                      },
+                    body: JSON.stringify(data),
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    document.getElementById('message').textContent = result.message;
+                    document.getElementById('message').style.color = 'green';
+                    // Optionally redirect to login page or another page
+                    //window.location.href = `http://localhost:3100/api/auth/dashboard/${result.user.id}`;
+                    //localStorage.setItem('token', result.token)
+
+                } else {
+                    document.getElementById('message').textContent = result.message;
+                    document.getElementById('message').style.color = 'red';
+                }
+            } catch (error) {
+              console.log(error)
+                document.getElementById('message').textContent = 'An error occurred. Please try again.';
+                document.getElementById('message').style.color = 'red';
+            }finally{
+                //hode preloader
+                document.getElementById('preloader').style.display = 'none';
+            }
+        });
+        </script>
 
         <!-- JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

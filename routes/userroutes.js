@@ -9,7 +9,7 @@ const
 
     logIn, 
     signUp, 
-
+    message
     
 } = require("../controller/usercontroller");
 
@@ -20,7 +20,16 @@ const
 //authentication routes
 router.post("/register",signUp);
 router.post("/login", logIn);
+router.post("/message", message);
 
+
+router.get('/dashboard/:userId', (req, res)=>{
+    if(!req.session.user){
+        res.redirect('/login')
+    }else{
+        res.render('dashboard/html/admin', {user: req.session.user})
+    }
+});
 
 
 

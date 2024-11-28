@@ -28,16 +28,10 @@ const logIn = async(req, res)=>{
                     fullname: user.fullname, 
                     phoneNumber: user.phoneNumber,
                     country: user.country,
-                    accountNumber: user.accountNumber,
+                    
                     accountBank: user.accountBank,
-                    referralToken: user.referralToken,
-                    image:user.image,
-                    notificationsCount: user.notificationsCount,
-                    referralCount:user.referralCount,
-                    referredUsers: user.referredUsers,
-                    commissions: user.commissions,
-                    points:user.points,
-                    accountName:user.accountName
+                    
+                   
                    
                     
                    
@@ -56,13 +50,9 @@ const logIn = async(req, res)=>{
                         fullname: user.fullname,
                         phoneNumber: user.phoneNumber,
                         country: user.country,
-                        accountNumber: user.accountNumber,
+                       
                         accountBank: user.accountBank,
-                        notificationsCount: user.notificationsCount,
-                        referralCount:user.referralCount,
-                        referredUsers: user.referredUsers,
-                        points:user.points,
-                        accountName:user.accountName
+                        
 
                     }
                 });
@@ -174,7 +164,7 @@ const resetPassword = async (req, res) => {
 const signUp = async (req, res) => {
     try {
       const { fullname, phoneNumber, email,  accountBank,country, businessType,  password } = req.body;
-  console.log(fullname, phoneNumber)
+  //console.log(fullname, phoneNumber)
       if (!fullname || !phoneNumber || !country   || !accountBank || !email || !password || !businessType) {
         return res.status(400).json({ status: "Failed", message: "Please fill out all fields." });
         
@@ -349,7 +339,7 @@ const getUserById = async(userId)=>{
 //function to send message to us......
 const message = (req, res)=>{
     const {fullname, email, message, subject} = req.body;
-     console.log(fullname, email, message, subject)
+     //console.log(fullname, email, message, subject)
     const transporter = nodemailer.createTransport({
         service:  process.env.SERVICE,
         auth:{
@@ -365,7 +355,7 @@ const message = (req, res)=>{
      let mailOptions = {
         from: 'shazaniyu@gmail.com', // Sender address
         to: 'shazaniyu@gmail.com', // List of recipients
-        subject: 'Adain Affiliate', // Subject line
+        subject: 'ATWAP', // Subject line
         text: `Name: ${fullname}\n Subject:${subject}\nEmail: ${email}\nMessage: ${message}`, // Plain text body
         // You can add HTML to the email if needed
         // html: '<p>Name: ' + name + '</p><p>Email: ' + email + '</p><p>Message: ' + message + '</p>'
@@ -378,7 +368,8 @@ const message = (req, res)=>{
         }
         console.log('Message sent: %s', info.messageId);
           //res.status(200).json({status:"Success", message: "Email Deliver"});
-          alert("email delivered")
+          res.render('email')
+          //alert("email delivered")
     });
 };
 

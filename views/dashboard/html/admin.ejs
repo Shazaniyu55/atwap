@@ -52,11 +52,11 @@
 
         <div class="side-nav">
             <ul>
-                <a href="http://localhost:3500/api/auth/dashboard/"><li class="remain" id="plan"><img src="/images/plan-svgrepo-com.png" alt="">Plan</li></a>
-                <a href="http://localhost:3500/api/auth/users/withdraw/"><li id="withdraw"><img src="/images/money-bill-transfer-solid.svg" alt="">Withdrawals</li></a>
-                <a href="http://localhost:3500/api/auth/users/wallet/"><li id="wallet"><img src="/images/wallet-svgrepo-com (1).png" alt="">Wallet</li></a>
-                <a href="http://localhost:3500/api/auth/users/vtu/"><li id="Top-up"><img src="/images/top-up-balance-svgrepo-com.png" alt="">VTU Top-up</li></a>
-                <a href="http://localhost:3500/api/auth/users//referred"><li id="Top-up"><img src="/images/person.png" alt="">Referred</li></a>
+                <a href="http://localhost:3500/api/auth/dashboard/"><li class="remain" id="plan"><img src="/images/plan-svgrepo-com.png" alt="">Remit</li></a>
+                <a href="http://localhost:3500/api/auth/users/withdraw/6747d68b50c3395feec687b2"><li id="withdraw"><img src="/images/money-bill-transfer-solid.svg" alt="">Withdrawals</li></a>
+                <a href="http://localhost:3500/api/auth/users/wallet/6747d68b50c3395feec687b2"><li id="wallet"><img src="/images/wallet-svgrepo-com (1).png" alt="">Wallet</li></a>
+                <a href="http://localhost:3500/api/auth/users/vtu/6747d68b50c3395feec687b2"><li id="Top-up"><img src="/images/top-up-balance-svgrepo-com.png" alt="">VTU Top-up</li></a>
+                <a href="http://localhost:3500/api/auth/users/profile/6747d68b50c3395feec687b2"><li id="Top-up"><img src="/images/person.png" alt="">Profile</li></a>
 
             </ul>
         </div>
@@ -128,165 +128,31 @@
     
 
     <div class="pland">
-        <p id="head">Plan</p>
+        <p id="head">REMIT</p>
 
-        <div class="sub-nav">
-            <ul>
-                <li id="bb">Basic Executive</li>
-                <li id="bb2">Basic Pro</li>
-                <li id="bb3">Basic Max Executive</li>
-                <li id="bb4">Premuim Executive</li>
-                <li id="bb5">Premuim Pro</li>
-                <li id="bb6">Premuim Max Executive</li>
-            </ul>
-        </div>
+       
 
         <div class="basicE">
 
-            <div class="nav">
-                <ul>
-                    <li id="bbb">Registration Fee</li>
-                    <li id="bbb2" >Designated Business Volume</li>
-                    <li id="bbb3">Earning Level Depth</li>
-                    <li id="bbb4">Monthly Fees and BV</li>
-                </ul>
-            </div>
-            <!--  -->
-            <form  action="http://localhost:3500/api/payment/niyuupgrade" method="post">
-                <div class="dis2">
-                    <div class="nav2">
-                        <input type="text" name="userId" id="userId" value="" hidden>
-                        <input type="number" name="package" id="package" value="2500" hidden>
-                        <input type="text" name="name" id="name"value=""  hidden>
-                        <input type="text" name="email" id="email" value="" hidden>
-
-                        <p  id="pp">2,500</p>
-                        <p id="pp2">10PV</p>
-                        <p id="pp3">2</p>
-                        <p id="pp4">1,000 & 2PV per month</p>
-                    </div>
-        
-                    
-                    <div class="but">
-                        <button type="submit" class="">Upgrade Plan</button>
-                    </div>
-                </div>
-            </form>
+            
+           
             
 
 
-        <form action="http://localhost:3500/api/payment/niyuupgrade" method="post" >
 
-            <div class="dis3">
-                <div class="nav2">
 
-                    <input type="text" name="userId" id="userId" value="" hidden>
-                    <input type="number" name="package" id="package" value="5000" hidden>
-                    <input type="text" name="name" id="name"value=""  hidden>
-                    <input type="text" name="email" id="email" value="" hidden>
-                    <p id="pp">5,000</p>
-                    <p id="pp2">20PV</p>
-                    <p id="pp3">4</p>
-                    <p id="pp4">2,000 & 4PV per month</p>
-                </div>
-    
-                
-                <div class="but">
-                    <button type="submit" class="reg2">Upgrade Plan</button>
-                </div>
-            </div>
-        </form>
+        
+        
+
+     
+
+        
+
         
 
 
         
-        <form action="http://localhost:3500/api/payment/niyuupgrade" method="post">
-            <div class="dis4">
-                <div class="nav2">
-                    <input type="text" name="userId" id="userId" value="" hidden>
-                    <input type="number" name="package" id="package" value="10000" hidden>
-                    <input type="text" name="name" id="name"value=""  hidden>
-                    <input type="text" name="email" id="email" value="" hidden>
-                    <p id="pp">10,000</p>
-                    <p id="pp2">40PV</p>
-                    <p id="pp3">5</p>
-                    <p id="pp4">3,000 & 5PV per month</p>
-                </div>
-    
-                
-                <div class="but">
-                    <button type="submit" class="reg3">Ugrade Plan</button>
-                </div>
-            </div>
-        </form>
-        
 
-        <form action="http://localhost:3500/api/payment/niyuupgrade" method="post">
-            <div class="dis5">
-                <div class="nav2">
-                    <input type="text" name="userId" id="userId" value="" hidden>
-                    <input type="number" name="package" id="package" value="25000" hidden>
-                    <input type="text" name="name" id="name"value=""  hidden>
-                    <input type="text" name="email" id="email" value="" hidden>
-                    <p id="pp">25,000</p>
-                    <p id="pp2">100PV</p>
-                    <p id="pp3">6</p>
-                    <p id="pp4">4,000 & 16PV per month</p>
-                </div>
-    
-                
-                <div class="but">
-                    <button type="submit" class="reg4">Upgrade Plan</button>
-                </div>
-            </div>
-        </form>
-
-        
-
-        <form action="http://localhost:3500/api/payment/niyuupgrade" method="post">
-            <div class="dis6">
-                <div class="nav2">
-                    <input type="text" name="userId" id="userId" value="" hidden>
-                    <input type="number" name="package" id="package" value="100000" hidden>
-                    <input type="text" name="name" id="name"value=""  hidden>
-                    <input type="text" name="email" id="email" value="" hidden>
-                    <p id="pp">100,000</p>
-                    <p id="pp2">400PV</p>
-                    <p id="pp3">8</p>
-                    <p id="pp4">10,000 & 40PV per month</p>
-                </div>
-    
-                
-                <div class="but">
-                    <button type="submit" class="reg5">Upgrade Plan</button>
-                </div>
-            </div>
-        </form>
-        
-
-
-        <form action="http://localhost:3500/api/payment/niyuupgrade" method="post">
-            <div class="dis7">
-                <div class="nav2">
-                    <input type="text" name="userId" id="userId" value="" hidden>
-                    <input type="number" name="package" id="package" value="500000" hidden>
-                    <input type="text" name="name" id="name"value=""  hidden>
-                    <input type="text" name="email" id="email" value="" hidden>
-                    <p id="pp">500,000</p>
-                    <p id="pp2">2000PV</p>
-                    <p id="pp3">10</p>
-                    <p id="pp4">25,000 & 100PV per month</p>
-                </div>
-    
-                
-                <div class="but">
-                    <button type="submit" class="reg6">Upgrade Plan</button>
-                </div>
-            </div>
-        </form>
-
-
-        <!-- Data Tables -->
         
 
         
