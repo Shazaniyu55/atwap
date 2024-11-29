@@ -1,7 +1,12 @@
 // controllers/adminController.js
 const User = require('../model/usermodel');
-const Notification = require("../model/notification");
+const Admin = require("../model/admin");
+const Blog = require("../model/blog");
+const cloudinary = require("../cloudinary");
+
 require("dotenv").config();
+
+
 
 
 
@@ -69,7 +74,6 @@ const registerAdmin = async (req, res) => {
 };
 
 
-
 const getAllUsers = async (req, res) => {
   try {
 
@@ -83,17 +87,74 @@ const getAllUsers = async (req, res) => {
       }
 
       const users = await User.find();
-     
+      
 
-   
+  
   
 // console.log(subscribe)
-    res.render('user/html/dashboard', { users}); // Rendering a view with the users data
+    res.render('admin/html/dashboard', { users}); // Rendering a view with the users data
   } catch (err) {
     res.status(500).send('Error retrieving users');
   }
 };
 
+
+
+const uploadToBlog = async(req, res)=>{
+  const { title, content, image } = req.body;
+
+  try{
+    const adminId = process.env.TEST_ADMIN_ID;
+    if(!adminId){
+      res.status(500).json({status:"failed", message: "invalid admin"})
+
+    }else{
+        if(!title || !content || !image){
+          return res.status(400).json({status: "failed", message: 'Title, content, and image are required.' });
+        }
+// Get the image URL from Cloudinary
+       const imageUrl = req.file.path;
+         // If an image file is provided
+      if (req.file) {
+        // Wrap the Cloudinary upload in a promise
+       
+          const uploadStream = cloudinary.uploader.upload_stream({ resource_type: 'image' }, (error, result) => {
+            if (error) {
+                return res.status(500).send('Error uploading image to Cloudinary');
+            }
+            imageUrl = result.secure_url;
+
+        
+        
+          
+
+          });
+          
+          streamifier.createReadStream(req.file.buffer).pipe(uploadStream);        
+      }
+
+           // Get the image URL from Cloudinary
+           //const imageUrl = req.file.path;
+            // Create and save the blog post
+        const newBlog = new Blog({
+          title,
+          content,
+          image: imageUrl, // Save Cloudinary URL in the database
+      });
+
+      await newBlog.save();
+      return res.status(201).json({
+        message: 'Blog post created successfully!',
+        blog: newBlog,
+    });
+    }
+
+  }catch(error){
+    console.error('Error uploading blog post:', error);
+    return res.status(500).json({ message: 'Internal server error.' });
+  }
+
+}
 
 
 
@@ -125,45 +186,15 @@ const search = async (req, res) => {
     }
 };
 
-// Create a new notification
-const createNotification = async (req, res) => {
-  try {
-      const { message, user, type } = req.body;
-
-      if (!message || !user || !type) {
-          return res.status(400).json({ error: 'Message, user, and type are required.' });
-      }
-
-      // Check if the user exists
-      const userExists = await Admin.findById(user);
-      if (!userExists) {
-          return res.status(404).json({ error: 'User not found.' });
-      }
-
-      const notification = new Notification({ message, user, type });
-      await notification.save();
-
-      // Update user's notification count
-      await User.updateOne(      
-        { $inc: { notificationsCount: 1 } }
-      );
-
-
-      //res.status(201).json(notification);
-      res.redirect('/api/admin/message')
-  } catch (error) {
-      res.status(500).json({ error: error.message });
-  }
-};
 
 
 module.exports = {
-  getAllUsers, 
-  createNotification, 
+
   deleteUser, 
   logIn, 
   search, 
   registerAdmin, 
- 
+getAllUsers,
+uploadToBlog
 
 };

@@ -367,8 +367,8 @@ const message = (req, res)=>{
             return console.log(error);
         }
         console.log('Message sent: %s', info.messageId);
-          //res.status(200).json({status:"Success", message: "Email Deliver"});
-          res.render('email')
+          res.status(200).json({status:"Success", message: "Email Deliver"});
+          //res.render('email')
           //alert("email delivered")
     });
 };

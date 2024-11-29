@@ -5,12 +5,11 @@ const session = require('express-session');
 const path = require('path');
 const app = express();
 const authRoute = require("./routes/userroutes");
+const adminRoute = require("./routes/adminroutes");
 const mongoose = require("mongoose");
 const port = 3100;
-require('dotenv').config()
-//host my express static files
+require('dotenv').config();
 
-//connects to the mongoDB databse
 mongoose.connect(process.env.MONGODB_CONNECTION).then(()=>{console.log("Database Connected")}).catch((err)=>{console.log(err)});
 app.use (express.static(path.join(__dirname, "assets")));
 app.use(cors());
@@ -32,7 +31,7 @@ app.use(express.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views')); 
 app.use("/api/auth", authRoute);
-
+app.use("/api/admin", adminRoute);
 
 app.get('/', (req, res)=>{
     res.render('index')
@@ -53,6 +52,9 @@ app.get('/about', (req, res)=>{
 app.get('/blog', (req, res)=>{
     res.render('blog')
 })
+app.get('/adminlogin', (req, res)=>{
+    res.render("adminlogin")
+});
 
 app.get('/dashboard', (req, res)=>{
     res.render('dashboard/html/admin')
@@ -60,6 +62,10 @@ app.get('/dashboard', (req, res)=>{
 
 app.get('/contact', (req, res)=>{
     res.render('contact')
+})
+
+app.use((req, res, next)=>{
+    res.render('404')
 })
 
 app.listen(port, ()=>{
