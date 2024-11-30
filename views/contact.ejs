@@ -303,7 +303,7 @@
             try {
                 const token = localStorage.getItem('token');
                 console.log(token)
-                const response = await fetch('http://localhost:3100/api/auth/message', { // Adjust URL based on your route
+                const response = await fetch('https://atwap.vercel.app/api/auth/message', { // Adjust URL based on your route
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
