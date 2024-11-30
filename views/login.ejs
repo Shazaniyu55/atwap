@@ -131,27 +131,59 @@
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
-  
-    // Define signIn function globally
-    window.signIn = async function() {
-      const provider = new GoogleAuthProvider();
-      try {
+
+    window.signIn = async function () {
+    const provider = new GoogleAuthProvider();
+    try {
         const result = await signInWithPopup(auth, provider);
         const user = result.user;
-        //window.location.href = `http://localhost:3100/api/auth/dashboard/}`;
 
-        console.log("User:", user);
+        // Send user details to your server
+        const response = await fetch('http://localhost:3100/api/auth/firebase-login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                uid: user.uid,
+                email: user.email,
+                displayName: user.displayName,
+            }),
+        });
 
-        if(!user){
-         let showsignin = document.querySelector('.nav-button') 
-         showsignin.parentElement.remove()     
-        }else{
+        const data = await response.json();
 
+        if (response.ok) {
+            // Redirect to dashboard with MongoDB user ID
+            window.location.href = `http://localhost:3100/api/auth/dashboard/${data.id}`;
+        } else {
+            console.error(data.message);
         }
-      } catch (error) {
+    } catch (error) {
         console.error("Error during sign-in:", error);
-      }
-    };
+    }
+};
+  
+    // Define signIn function globally
+    // window.signIn = async function() {
+    //   const provider = new GoogleAuthProvider();
+    //   try {
+    //     const result = await signInWithPopup(auth, provider);
+    //     const user = result.user;
+    //     //window.location.href = `http://localhost:3100/api/auth/dashboard/}`;
+
+    //     console.log("User:", user);
+
+    //     if(!user){
+    //      let showsignin = document.querySelector('.nav-button') 
+    //      showsignin.parentElement.remove()     
+    //     }else{
+
+    //     }
+    //   } catch (error) {
+    //     console.error("Error during sign-in:", error);
+    //   }
+    // };
 
 
 </script>

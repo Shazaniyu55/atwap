@@ -1,7 +1,7 @@
 //my express server imports
 const express = require('express');
 const router = express.Router();
-
+const User = require("../model/usermodel");
 
 //all my controller imports 
 const 
@@ -30,6 +30,38 @@ router.get('/dashboard/:userId', (req, res)=>{
         res.render('dashboard/html/admin', {user: req.session.user})
     }
 });
+
+
+
+
+
+router.post('/firebase-login', async (req, res) => {
+    const { uid, email, displayName } = req.body;
+
+    if (!uid || !email) {
+        return res.status(400).json({ message: 'Invalid user data' });
+    }
+
+    try {
+        let user = await User.findOne({ email });
+
+        if (!user) {
+            // Create new user if not exists
+            user = new User({
+                email,
+                name: displayName,
+                firebaseUID: uid,
+            });
+            await user.save();
+        }
+
+        res.status(200).json({ id: user._id, message: 'Login successful' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
 
 
 
