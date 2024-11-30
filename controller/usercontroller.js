@@ -399,7 +399,34 @@ const renderResetPasswordPage = async (req, res) => {
 
 
 
+const firebaseLogin = async (req, res)=>{
+    const { uid, email } = req.body;
+    console.log(uid, email)
 
+    if (!uid || !email) {
+        return res.status(400).json({ message: 'Invalid user data' });
+    }
+
+    try {
+        let user = await User.findOne({ email });
+
+        if (!user) {
+            // Create new user if not exists
+            // user = new User({
+            //     email,
+            //     firebaseUID: uid,
+            // });
+            user.firebaseUID = uid
+            await user.save();
+            console.log(user)
+        }
+
+        res.status(200).json({ id: user._id, message: 'Login successful' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
+    }
+}
 
 
 
@@ -415,7 +442,7 @@ module.exports =
     requestPasswordReset, 
     resetPassword, 
     renderResetPasswordPage,
-   
+    firebaseLogin
     
 
 };
