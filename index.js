@@ -7,6 +7,7 @@ const app = express();
 const authRoute = require("./routes/userroutes");
 const adminRoute = require("./routes/adminroutes");
 const mongoose = require("mongoose");
+const Blog  = require("./model/blog")
 const port = 3100;
 require('dotenv').config();
 
@@ -49,8 +50,15 @@ app.get('/reg2', (req, res)=>{
 app.get('/about', (req, res)=>{
     res.render('about')
 })
-app.get('/blog', (req, res)=>{
-    res.render('blog')
+app.get('/blog', async(req, res)=>{
+    try {
+        const blog = await Blog.find()
+        console.log(blog)
+        res.render('blog',{blog})
+    } catch (error) {
+        
+    }
+    
 })
 app.get('/adminlogin', (req, res)=>{
     res.render("adminlogin")
@@ -62,6 +70,16 @@ app.get('/dashboard', (req, res)=>{
 
 app.get('/contact', (req, res)=>{
     res.render('contact')
+})
+
+app.get('/logout', (req, res)=>{
+    req.session.destroy(err =>{
+        if (err) {
+            return res.status(500).json({status: "failed", message: err.message});
+        }else{
+            res.redirect('/login')
+        }
+    })
 })
 
 app.use((req, res, next)=>{

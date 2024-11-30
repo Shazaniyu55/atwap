@@ -3,6 +3,7 @@ const User = require('../model/usermodel');
 const Admin = require("../model/admin");
 const Blog = require("../model/blog");
 const cloudinary = require("../cloudinary");
+const streamifier  = require("streamifier");
 
 require("dotenv").config();
 
@@ -101,7 +102,7 @@ const getAllUsers = async (req, res) => {
 
 
 const uploadToBlog = async(req, res)=>{
-  const { title, content, image } = req.body;
+  const { title, content } = req.body;
 
   try{
     const adminId = process.env.TEST_ADMIN_ID;
@@ -109,11 +110,11 @@ const uploadToBlog = async(req, res)=>{
       res.status(500).json({status:"failed", message: "invalid admin"})
 
     }else{
-        if(!title || !content || !image){
+        if(!title || !content){
           return res.status(400).json({status: "failed", message: 'Title, content, and image are required.' });
         }
 // Get the image URL from Cloudinary
-       const imageUrl = req.file.path;
+       const imageUrl = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
          // If an image file is provided
       if (req.file) {
         // Wrap the Cloudinary upload in a promise
@@ -125,29 +126,37 @@ const uploadToBlog = async(req, res)=>{
             imageUrl = result.secure_url;
 
         
-        
+            createuser()
           
 
           });
           
           streamifier.createReadStream(req.file.buffer).pipe(uploadStream);        
+      }else{
+        createuser()
       }
 
-           // Get the image URL from Cloudinary
+      async function createuser(){
+
+            // Get the image URL from Cloudinary
            //const imageUrl = req.file.path;
             // Create and save the blog post
-        const newBlog = new Blog({
-          title,
-          content,
-          image: imageUrl, // Save Cloudinary URL in the database
-      });
+            const newBlog = new Blog({
+              title,
+              content,
+              image: imageUrl, // Save Cloudinary URL in the database
+          });
+    
+          await newBlog.save();
+          return res.status(201).json({
+            message: 'Blog post created successfully!',
+            blog: newBlog,
+        });
+        }
 
-      await newBlog.save();
-      return res.status(201).json({
-        message: 'Blog post created successfully!',
-        blog: newBlog,
-    });
-    }
+      }
+
+       
 
   }catch(error){
     console.error('Error uploading blog post:', error);

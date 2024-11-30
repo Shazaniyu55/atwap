@@ -134,73 +134,37 @@
             <!-- Blog Start -->
             <div class="blog">
                 <div class="container">
+                    
+
                     <div class="section-header text-center">
                         <p>Latest Blog</p>
                         <h2>Latest From Our Blog</h2>
                     </div>
                     <div class="row">
+                        <% blog.forEach(function(product) { %>
                         <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
                             <div class="blog-item">
                                 <div class="blog-img">
-                                    <img src="/images/blog-1.jpg" alt="Image">
+                                    <img src="<%= product.image %>" alt="Image">
                                 </div>
                                 <div class="blog-title">
-                                    <h3>Why Choosing Us</h3>
+                                    <h3><%= product.title %></h3>
                                     <a class="btn" href="">+</a>
                                 </div>
                                 <div class="blog-meta">
                                     <p>By<a href="">Admin</a></p>
-                                    <p>In<a href="">Construction</a></p>
+                                    <p>In<a href=""><%= product.title %></a></p>
                                 </div>
                                 <div class="blog-text">
                                     <p>
                                         
-Sustainability isn’t just a trend—it’s a necessity. By using eco-friendly materials, energy-efficient systems, and waste-reducing techniques, construction projects can minimize their environmental impact while lowering long-term operational costs. At [Your Company Name], we are committed to sustainable construction practices, ensuring that our projects not only meet today’s needs but also protect the planet for future generations.
-
+                                        <%= product.content %>
                                     </p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6 wow fadeInUp">
-                            <div class="blog-item">
-                                <div class="blog-img">
-                                    <img src="/images/blog-2.jpg" alt="Image">
-                                </div>
-                                <div class="blog-title">
-                                    <h3>House Construction</h3>
-                                    <a class="btn" href="">+</a>
-                                </div>
-                                <div class="blog-meta">
-                                    <p>By<a href="">Admin</a></p>
-                                    <p>In<a href="">Construction</a></p>
-                                </div>
-                                <div class="blog-text">
-                                    <p>
-                                        House construction is the process of building a structure that serves as a residential dwelling. It involves various stages, from planning and design to the actual building process and finishing touches. Building a house requires careful planning, adherence to regulations, and collaboration between architects, engineers, contractors, and laborers. This write-up provides an overview of the key steps and considerations involved in constructing a house.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
-                            <div class="blog-item">
-                                <div class="blog-img">
-                                    <img src="/images/blog-3.jpg" alt="Image">
-                                </div>
-                                <div class="blog-title">
-                                    <h3>Architecture Planning</h3>
-                                    <a class="btn" href="">+</a>
-                                </div>
-                                <div class="blog-meta">
-                                    <p>By<a href="">Admin</a></p>
-                                    <p>In<a href="">Construction</a></p>
-                                </div>
-                                <div class="blog-text">
-                                    <p>
-                                        Architecture planning is a critical phase in the design and construction process of buildings, focusing on the conceptualization, design, and strategic layout of spaces. It combines creativity, technical expertise, and practical considerations to create functional, aesthetically pleasing, and sustainable environments. This process serves as the foundation for translating a vision into a tangible structure.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                        
+                        <% }); %>
             
 
                         
@@ -218,7 +182,9 @@ Sustainability isn’t just a trend—it’s a necessity. By using eco-friendly 
                             </ul> 
                         </div>
                     </div>
+                    
                 </div>
+                
             </div>
             <!-- Blog End -->
 
