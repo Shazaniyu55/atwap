@@ -24,11 +24,9 @@
 
         <div class="side-nav">
             <ul>
-                <a href="http://localhost:3500/api/auth/dashboard/<%= user.id %>"><li class="remain" id="plan"><img src="/images/plan-svgrepo-com.png" alt="">Plan</li></a>
-                <a href="http://localhost:3500/api/auth/users/withdraw/<%= user.id %>"><li id="withdraw"><img src="/images/money-bill-transfer-solid.svg" alt="">Withdrawals</li></a>
-                <a href="http://localhost:3500/api/auth/users/wallet/<%= user.id %>"><li id="wallet"><img src="/images/wallet-svgrepo-com (1).png" alt="">Wallet</li></a>
-                <a href="http://localhost:3500/api/auth/users/vtu/<%= user.id %>"><li id="Top-up"><img src="/images/top-up-balance-svgrepo-com.png" alt="">VTU Top-up</li></a>
-                <a href="http://localhost:3500/api/auth/users/<%= user.id %>/referred""><li id="Top-up"><img src="/images/person.png" alt="">Referred</li></a>
+                <a href="http://localhost:3500/api/auth/dashboard/6747d68b50c3395feec687b2"><li class="remain" id="plan"><img src="/images/plan-svgrepo-com.png" alt="">Plan</li></a>
+    
+                <a href="http://localhost:3100/api/auth/users/profile/6747d68b50c3395feec687b2"><li id="Top-up"><img src="/images/person.png" alt="">Profile</li></a>
             </ul>
         </div>
         <div class="logout">
@@ -61,7 +59,7 @@
         </div>
 
         <div class="profile">
-            <img src="<%= user.image  %>" class="img"></img>
+            <img src="/images/profile-1335-svgrepo-com.png" class="img"></img>
             <div class="go">
             <img src="/images/arrow-next-svgrepo-com black.png" alt="" id="around">
         </div>
@@ -72,7 +70,7 @@
     <div class="tootop">
 
         <ul>
-            <li id="profile"><a href="http://localhost:3500/api/auth/users/profile/<%= user.id %>"><img src="/images/profile-1335-svgrepo-com.png" alt=""> Profile</a></li>
+            <li id="profile"><a href="http://localhost:3500/api/auth/users/profile/6747d68b50c3395feec687b2"><img src="/images/profile-1335-svgrepo-com.png" alt=""> Profile</a></li>
             <li id="logout"><a href="http://localhost:3500/logout"><img src="/images/power-symbol-svgrepo-com.png" alt=""> Logout</a></li>
         </ul>
     
@@ -107,31 +105,24 @@
 
         <div class="yourp">
             <label for="Fullname">Fullname</label> <br>
-            <input type="text" name="name" id="fullname" placeholder="<%= user.fullname %>" disabled>  <br><br>
+            <input type="text" name="name" id="fullname" placeholder="<%= userniyu.fullname %>" disabled>  <br><br>
 
-
-            <label for="Username">Username</label> <br>
-            <input type="text" name="Username" id="Username" placeholder="<%= user.accountName %>" disabled>  <br><br>
 
             <label for="Email">Email</label> <br>
-            <input type="text" name="Email" id="Email" placeholder="<%= user.email %>" disabled>  <br><br>
+            <input type="text" name="Email" id="Email" placeholder="<%= userniyu.email %>" disabled>  <br><br>
 
 
             <label for="Phone Number">Phone Number</label> <br>
-            <input type="text" name="number" id="Phone-number" placeholder="<%= user.phoneNumber %>" disabled>  <br><br>
+            <input type="text" name="number" id="Phone-number" placeholder="<%= userniyu.phoneNumber %>" disabled>  <br><br>
 
 
-            <label for="Account Number">Account Number</label> <br>
-            <input type="text" name="Account-number" id="Account-number" placeholder="<%= user.accountNumber %>" disabled>  <br><br>
-
-
+   
 
             <label for="Password">Country</label> <br>
-            <input type="text" name="Password" id="Password" placeholder="<%= user.country %>" disabled>  <br><br>
+            <input type="text" name="Password" id="Password" placeholder="<%= userniyu.country %>" disabled>  <br><br>
 
 
-            <label for="Email">Bank</label> <br>
-            <input type="text" name="Email" id="Email" placeholder="<%= user.accountBank %>" disabled>  <br><br>
+           
 
 
 

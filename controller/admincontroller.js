@@ -2,6 +2,7 @@
 const User = require('../model/usermodel');
 const Admin = require("../model/admin");
 const Blog = require("../model/blog");
+const Tax = require("../model/tax");
 const cloudinary = require("../cloudinary");
 const streamifier  = require("streamifier");
 
@@ -75,6 +76,21 @@ const registerAdmin = async (req, res) => {
 };
 
 
+const getTaxWithUserDetails = async (taxId) => {
+  try {
+    const tax = await User.findById(taxId).populate('user', 'name email'); // Populate only `name` and `email`
+    if (!tax) {
+      console.log('Tax record not found');
+      return null;
+    }
+    console.log(tax);
+    return tax;
+  } catch (error) {
+    console.error('Error fetching tax with user details:', error);
+    return null;
+  }
+};
+
 const getAllUsers = async (req, res) => {
   try {
 
@@ -88,12 +104,22 @@ const getAllUsers = async (req, res) => {
       }
 
       const users = await User.find();
+      const transac = await Tax.find();
+      const subscribe = await Tax.find();
+      getTaxWithUserDetails('6747d68b50c3395feec687b2');
+
+         // Calculate total amount
+         const totalAmount = subscribe.reduce((sum, user) => sum + user.amount, 0);
+         const averageSubscription = subscribe.length > 0 ? totalAmount / subscribe.length : 0;
+
+         // Assuming we want to display the number of transactions
+         const totalTransactions = subscribe.length;
       
 
   
   
 // console.log(subscribe)
-    res.render('admin/html/dashboard', { users}); // Rendering a view with the users data
+    res.render('admin/html/dashboard', { users, transac,subscribe, totalAmount, averageSubscription, totalTransactions}); // Rendering a view with the users data
   } catch (err) {
     res.status(500).send('Error retrieving users');
   }
@@ -114,7 +140,7 @@ const uploadToBlog = async(req, res)=>{
           return res.status(400).json({status: "failed", message: 'Title, content, and image are required.' });
         }
 // Get the image URL from Cloudinary
-       const imageUrl = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
+       var imageUrl = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
          // If an image file is provided
       if (req.file) {
         // Wrap the Cloudinary upload in a promise
@@ -124,6 +150,8 @@ const uploadToBlog = async(req, res)=>{
                 return res.status(500).send('Error uploading image to Cloudinary');
             }
             imageUrl = result.secure_url;
+
+            //console.log(result)
 
         
             createuser()
@@ -148,10 +176,11 @@ const uploadToBlog = async(req, res)=>{
           });
     
           await newBlog.save();
-          return res.status(201).json({
-            message: 'Blog post created successfully!',
-            blog: newBlog,
-        });
+          return res.render('admin/html/blog')
+        //   return res.status(201).json({
+        //     message: 'Blog post created successfully!',
+        //     blog: newBlog,
+        // });
         }
 
       }
@@ -189,7 +218,7 @@ const search = async (req, res) => {
         const user = await User.find(query);
         console.log(user)
         
-        res.render("user/html/search",{result: user});
+        res.render("admin/html/search",{result: user});
     } catch (error) {
         res.status(500).json({ error: 'An error occurred while searching for jobs.' });
     }

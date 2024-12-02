@@ -10,6 +10,110 @@
     <link rel="stylesheet" href="/css/dashboard2.css">  
 
     <style>
+        /* General container styling */
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+/* Form header */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Form group styling */
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* Labels */
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+/* Input fields */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease-in-out;
+}
+
+/* Focus effect */
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #007BFF;
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+}
+
+/* File input styling */
+input[type="file"] {
+  padding: 5px;
+  font-size: 16px;
+  border: none;
+  background-color: transparent;
+}
+
+/* Textarea */
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Select dropdown */
+select {
+  appearance: none;
+  background-color: #fff;
+}
+
+/* Submit button */
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* Hover effect on button */
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Optional: Add some responsiveness */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+  h1 {
+    font-size: 24px;
+  }
+}
+
                /* Add this CSS to style the preloader */
  .preloader {
      position: fixed;
@@ -52,11 +156,8 @@
 
         <div class="side-nav">
             <ul>
-                <a href="http://localhost:3500/api/auth/dashboard/"><li class="remain" id="plan"><img src="/images/plan-svgrepo-com.png" alt="">Remit</li></a>
-                <a href="http://localhost:3500/api/auth/users/withdraw/6747d68b50c3395feec687b2"><li id="withdraw"><img src="/images/money-bill-transfer-solid.svg" alt="">Withdrawals</li></a>
-                <a href="http://localhost:3500/api/auth/users/wallet/6747d68b50c3395feec687b2"><li id="wallet"><img src="/images/wallet-svgrepo-com (1).png" alt="">Wallet</li></a>
-                <a href="http://localhost:3500/api/auth/users/vtu/6747d68b50c3395feec687b2"><li id="Top-up"><img src="/images/top-up-balance-svgrepo-com.png" alt="">VTU Top-up</li></a>
-                <a href="http://localhost:3500/api/auth/users/profile/6747d68b50c3395feec687b2"><li id="Top-up"><img src="/images/person.png" alt="">Profile</li></a>
+                <a href="http://localhost:3100/api/auth/dashboard/6747d68b50c3395feec687b2"><li class="remain" id="plan"><img src="/images/plan-svgrepo-com.png" alt="">Remit</li></a>
+                <a href="http://localhost:3100/api/auth/users/profile/6747d68b50c3395feec687b2"><li id="Top-up"><img src="/images/person.png" alt="">Profile</li></a>
 
             </ul>
         </div>
@@ -128,14 +229,89 @@
     
 
     <div class="pland">
-        <p id="head">REMIT</p>
+        <p id="head">REMITS</p>
 
        
 
         <div class="basicE">
 
             
-           
+            <div class="container">
+                <form action="http://localhost:3100/api/auth/tax-create" method="POST" enctype="multipart/form-data">
+                  <div class="form-group">
+                    <input type="text" id="userId" name="userId" value="6747d68b50c3395feec687b2" hidden>
+                  </div>
+                  <!-- Full Name -->
+                  <div class="form-group">
+                    <label for="fullname">Company Name:</label>
+                    <input type="text" id="fullname" name="fullname" required>
+                  </div>
+            
+                  <!-- Tax Type -->
+                  <div class="form-group">
+                    <label for="taxType">Tax Type:</label>
+                    <select id="taxType" name="taxType" required>
+                      <option value="">Select Tax Type</option>
+                      <option value="Annual Due">Annual Due</option>
+                      <option value="Income Tax">Income Tax</option>
+                      <option value="VAT">VAT</option>
+                      <option value="State Tax">State Tax</option>
+                      <option value="LGA Tax">LGA Tax</option>
+                      <option value="Other Obligations">Other Obligations</option>
+                    </select>
+                  </div>
+            
+                  <!-- Amount -->
+                  <div class="form-group">
+                    <label for="amount">Amount (₦):</label>
+                    <input type="number" id="amount" name="amount" min="0" required>
+                  </div>
+            
+                  <!-- Payment Method -->
+                  <div class="form-group">
+                    <label for="paymentMethod">Payment Method:</label>
+                    <select id="paymentMethod" name="paymentMethod" required>
+                      <option value="">Select Payment Method</option>
+                      <option value="USSD">USSD</option>
+                      <option value="Bank Transfer">Bank Transfer</option>
+                      <option value="Card Payment">Card Payment</option>
+                    </select>
+                  </div>
+            
+                  <!-- Payment Proof (if required) -->
+                  <div class="form-group">
+                    <label for="paymentProof">Payment Proof (for Bank Transfer):</label>
+                    <input type="file" id="paymentProof" name="paymentProof" accept="image/*">
+                  </div>
+            
+                  <!-- State -->
+                  <div class="form-group">
+                    <label for="state">State:</label>
+                    <input type="text" id="state" name="state" required>
+                  </div>
+            
+                  <!-- LGA -->
+                  <div class="form-group">
+                    <label for="lga">LGA:</label>
+                    <input type="text" id="lga" name="lga" required>
+                  </div>
+            
+                  <!-- Due Date -->
+                  <div class="form-group">
+                    <label for="dueDate">Due Date:</label>
+                    <input type="date" id="dueDate" name="dueDate">
+                  </div>
+            
+                  <!-- Comments -->
+                  <div class="form-group">
+                    <label for="comments">Comments:</label>
+                    <textarea id="comments" name="comments" rows="4"></textarea>
+                  </div>
+            
+                  <!-- Submit Button -->
+                  <button type="submit">Submit</button>
+                </form>
+              </div>
             
 
 

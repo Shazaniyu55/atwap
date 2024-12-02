@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require("../model/usermodel");
-
+const multer = require("multer")
 //all my controller imports 
 const 
 {
@@ -10,11 +10,15 @@ const
     logIn, 
     signUp, 
     message,
-    firebaseLogin
+    firebaseLogin,
+    getUserById,
+    payTax
     
 } = require("../controller/usercontroller");
 
 
+const storage = multer.memoryStorage(); // Store files in memory
+const upload = multer({ storage: storage });
 
 //all my routes
 
@@ -33,36 +37,21 @@ router.get('/dashboard/:userId', (req, res)=>{
 });
 
 
+router.get('/users/profile/:userId', async(req, res)=>{
+    try {
+        const userId = req.params.userId;
+        const userniyu = getUserById(userId);
+        res.render("dashboard/html/profile", {userniyu, user: req.session.user })
 
+    } catch (error) {
+        res.status(500).send( error.message );
+    }
+})
 
 router.post('/firebase-login', firebaseLogin)
 
-// router.post('/firebase-login', async (req, res) => {
-//     const { uid, email } = req.body;
+router.post('/tax-create',upload.single('paymentProof'), payTax)
 
-//     if (!uid || !email) {
-//         return res.status(400).json({ message: 'Invalid user data' });
-//     }
-
-//     try {
-//         let user = await User.findOne({ email });
-
-//         if (!user) {
-//             // Create new user if not exists
-//             user = new User({
-//                 email,
-//                 firebaseUID: uid,
-//             });
-//             await user.save();
-//             console.log(user)
-//         }
-
-//         res.status(200).json({ id: user._id, message: 'Login successful' });
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ message: 'Server error' });
-//     }
-// });
 
 
 

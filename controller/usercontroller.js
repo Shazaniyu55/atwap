@@ -2,6 +2,7 @@ const User = require("../model/usermodel");
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
 const bcrypt = require("bcryptjs");
+const Tax = require('../model/tax');
 require("dotenv").config();
 
 const jwt = require('jsonwebtoken');
@@ -327,9 +328,9 @@ const updateUser = async (req, res) => {
 
 const getUserById = async(userId)=>{
     const user = await User.findById(userId);
-
+    console.log(user)
     if (!user) {
-        throw new Error('User not found');
+        console.log("user not found")
     }else{
         return user;
     }
@@ -429,6 +430,35 @@ const firebaseLogin = async (req, res)=>{
 }
 
 
+const payTax = async(req, res)=>{
+    try {
+        const {userId, fullname, taxType, amount, paymentMethod, state, lga, dueDate, comments } = req.body;
+    
+        const taxData = {
+          user: userId,
+          fullname,
+          taxType,
+          amount,
+          paymentMethod,
+          state,
+          lga,
+          dueDate,
+          comments,
+        };
+    
+      
+    
+        const newTax = new Tax(taxData);
+        await newTax.save();
+    
+        res.redirect('/taxes'); // Redirect to tax list page
+      } catch (error) {
+        console.error(error);
+        res.status(500).send('An error occurred while creating the tax record.');
+      }
+}
+
+
 
 
 
@@ -442,7 +472,8 @@ module.exports =
     requestPasswordReset, 
     resetPassword, 
     renderResetPasswordPage,
-    firebaseLogin
+    firebaseLogin,
+    payTax
     
 
 };

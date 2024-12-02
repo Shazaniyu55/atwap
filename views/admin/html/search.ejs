@@ -56,7 +56,7 @@
       <div class="layout-container">
         <!-- Menu -->
 
-        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+        <aside id="layout-menu" class="m-4 p-4 layout-menu menu-vertical menu bg-menu-theme">
             <div class="app-brand demo">
               <a href="index.html" class="app-brand-link">
                 <span class="app-brand-logo demo me-1">
@@ -64,7 +64,7 @@
                     <!-- adain logo goes here -->
                   </span>
                 </span>
-                <span class="app-brand-text demo menu-text fw-semibold ms-2">Affiliate</span>
+                <span class="app-brand-text demo menu-text fw-semibold ms-2">ATWAP</span>
               </a>
   
             
@@ -78,7 +78,7 @@
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                   <i class="menu-icon tf-icons ri-home-smile-line"></i>
                   <div data-i18n="Dashboards">Dashboards</div>
-                  <div class="badge bg-danger rounded-pill ms-auto">5</div>
+                  <!-- <div class="badge bg-danger rounded-pill ms-auto">5</div> -->
                 </a>
                 <ul class="menu-sub">
                   
@@ -175,7 +175,7 @@
 
             <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
               <!-- Search -->
-              <div class="navbar-nav align-items-center">
+              <!-- <div class="navbar-nav align-items-center">
                 <div class="nav-item d-flex align-items-center">
                   <i class="ri-search-line ri-22px me-2"></i>
                   <input
@@ -184,22 +184,12 @@
                     placeholder="Search..."
                     aria-label="Search..." />
                 </div>
-              </div>
+              </div> -->
               <!-- /Search -->
 
               <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <!-- Place this tag where you want the button to render. -->
-                <li class="nav-item lh-1 me-4">
-                  <a
-                    class="github-button"
-                    href="https://github.com/themeselection/materio-bootstrap-html-admin-template-free"
-                    data-icon="octicon-star"
-                    data-size="large"
-                    data-show-count="true"
-                    aria-label="Star themeselection/materio-bootstrap-html-admin-template-free on GitHub"
-                    >Star</a
-                  >
-                </li>
+               
 
                 <!-- User -->
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
@@ -208,7 +198,7 @@
                       href="javascript:void(0);"
                       data-bs-toggle="dropdown">
                       <div class="avatar avatar-online">
-                        <img src=""  alt class="w-px-40 h-auto rounded-circle" />
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"  alt class="w-px-40 h-auto rounded-circle" />
                       </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end mt-3 py-2">
@@ -217,7 +207,7 @@
                           <div class="d-flex align-items-center">
                             <div class="flex-shrink-0 me-2">
                               <div class="avatar avatar-online">
-                                <img src="" alt class="w-px-40 h-auto rounded-circle" />
+                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt class="w-px-40 h-auto rounded-circle" />
                               </div>
                             </div>
                             <div class="flex-grow-1">
@@ -236,30 +226,14 @@
                           <span class="align-middle">My Profile</span>
                         </a>
                       </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          <i class="ri-settings-4-line ri-22px me-2"></i>
-                          <span class="align-middle">Settings</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          <span class="d-flex align-items-center align-middle">
-                            <i class="flex-shrink-0 ri-file-text-line ri-22px me-3"></i>
-                            <span class="flex-grow-1 align-middle">Billing</span>
-                            <span
-                              class="flex-shrink-0 badge badge-center rounded-pill bg-danger h-px-20 d-flex align-items-center justify-content-center"
-                              >4</span
-                            >
-                          </span>
-                        </a>
-                      </li>
+                     
+                      
                       <li>
                         <div class="dropdown-divider"></div>
                       </li>
                       <li>
                         <div class="d-grid px-4 pt-2 pb-1">
-                          <a class="btn btn-danger d-flex" href="https://affiliate-adain.vercel.app/logout">
+                          <a class="btn btn-danger d-flex" href="http://localhost:3100/logout">
                             <small class="align-middle">Logout</small>
                             <i class="ri-logout-box-r-line ms-2 ri-16px"></i>
                           </a>
@@ -293,10 +267,8 @@
                                         <th>S/N</th>
                                         <th>Full Name</th>
                                         <th>Email</th>
-                                        <th>Package</th>
-                                        <th>Points</th>
+                                        <th>Amount</th>
 
-                                        <th>Profile pics</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -309,20 +281,9 @@
                                                 <td><%= user.fullname %></td>
                                                 <td><%= user.email %></td>
                                                 <td><%= user.package %></td>
-                                                <td>
-                                                  <% 
-                    let totalPoints = 0; // Initialize total points
-                    user.points.forEach(point => {
-                        totalPoints += point.points; // Accumulate total points
-                        %>
-                            
-                        <% }) %>
-                        <%= totalPoints %>
-                                              </td>
+                                               
 
-                                                <td>
-                                                    <img src="<%= user.image %>" width="50px" height="50px" style="border-radius: 50%;"/>
-                                                </td>
+                                               
                                                 <td>
                                                     <form action="/users/delete-user" method="POST" class="d-inline">
                                                         <input type="hidden" name="id" value="<%= user.id %>">
@@ -348,11 +309,11 @@
             <!-- / Content -->
 
             <!-- Footer -->
-            <footer class="content-footer footer bg-footer-theme">
+            <!-- <footer class="content-footer footer bg-footer-theme">
               <div class="container-fluid">
                 <p>Adain Affiliate</p>
               </div>
-            </footer>
+            </footer> -->
             <!-- / Footer -->
 
             <div class="content-backdrop fade"></div>
