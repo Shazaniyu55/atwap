@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adain Affliate</title>
+    <link rel="stylesheet" href="/css/pop.css">
+</head>
+<body>
+
+    <div class="overlay"></div>
+
+    <div class="popup">
+        <h2>Payment Completed</h2>
+         
+        <% if (user.points === null) { %>
+            <p>You have not paid yet.</p>
+            
+            
+        
+        <% } else { %>
+
+
+
+
+            <p><%= user.fullname %></p>
+        
+           
+              <a href="http://localhost:3100/api/auth/receipt/674eda7388e5a0d0fb16b7b3"> <button  id="okBtn">Print</button>
+              </a>
+            
+            
+        
+        <% } %>
+        
+    </div>
+    
+
+   
+
+    <script src="/js/pop.js"></script>
+</body>
+</html>

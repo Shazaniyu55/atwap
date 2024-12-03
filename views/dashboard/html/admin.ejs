@@ -415,6 +415,7 @@ document.getElementById('signUpForm').addEventListener('submit', async function(
                     document.getElementById('message').textContent = result.message;
                     document.getElementById('message').style.color = 'green';
                     // Optionally redirect to login page or another page
+                    window.location.href = 'http://localhost:3100/api/auth/subscriptionpop';
                     //window.location.href = `http://localhost:3100/api/auth/dashboard/${result.user.id}`;
                     //localStorage.setItem('token', result.token)
 

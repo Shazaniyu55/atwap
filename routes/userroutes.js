@@ -12,7 +12,8 @@ const
     message,
     firebaseLogin,
     getUserById,
-    payTax
+    payTax,
+    printReceipt
     
 } = require("../controller/usercontroller");
 
@@ -52,7 +53,15 @@ router.post('/firebase-login', firebaseLogin)
 
 router.post('/tax-create',upload.single('paymentProof'), payTax)
 
+router.get('/subscriptionpop', (req, res)=>{
+    if (!req.session.user) {
+        return res.redirect('/login'); // Redirect to login if not authenticated
+      }
+    res.render("suceesspop", { user: req.session.user })
+});
 
+
+router.get('/receipt/:taxId',printReceipt);
 
 
 

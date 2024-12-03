@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Receipt</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f8f9fa;
+    }
+    .receipt-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    .details {
+      margin-bottom: 20px;
+    }
+    .details p {
+      margin: 5px 0;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #666;
+    }
+    .print-button {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      text-align: center;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .print-button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="receipt-container">
+    <div class="header">
+      <h1>Payment Receipt</h1>
+      <p>Receipt ID: <%=receiptData.receiptId  %> </p>
+    </div>
+    <div class="details">
+      <p><strong>Name:</strong> <%= receiptData.fullname %></p>
+      <p><strong>Email:</strong> <%= receiptData.email %></p>
+      <p><strong>Tax Type:</strong> <%= receiptData.taxType %></p>
+      <p><strong>Amount Paid:</strong> ₦<%= receiptData.amount %></p>
+      <p><strong>Payment Method:</strong> <%= receiptData.paymentMethod %></p>
+      <p><strong>Date:</strong> <%= receiptData.date %> </p>
+    </div>
+    <div class="footer">
+      <p>Thank you for your payment!</p>
+    </div>
+    <button class="print-button" onclick="window.print()">Print Receipt</button>
+  </div>
+</body>
+</html>

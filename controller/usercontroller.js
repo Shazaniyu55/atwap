@@ -459,7 +459,35 @@ const payTax = async(req, res)=>{
 }
 
 
+const printReceipt = async(req, res)=>{
 
+    try {
+        const taxId = req.params.taxId;
+        const taxRecord = await Tax.findById(taxId).populate({
+            path: 'user',
+            select: 'fullname email', // Ensure these fields exist in the User schema
+          });
+    
+        if (!taxRecord) {
+          return res.status(404).send('Tax record not found');
+        }
+    
+        const receiptData = {
+          receiptId: taxRecord._id,
+          fullname: taxRecord.fullname,
+          email: taxRecord.email,
+          taxType: taxRecord.taxType,
+          amount: taxRecord.amount,
+          paymentMethod: taxRecord.paymentMethod,
+          date: new Date(taxRecord.createdAt).toLocaleDateString(),
+        };
+    
+        res.render('receipt', {receiptData}); // Assumes you're using a template engine like EJS or Pug
+      } catch (error) {
+        console.error(error);
+        res.status(500).send('An error occurred');
+      }
+}
 
 
 module.exports =
@@ -473,7 +501,8 @@ module.exports =
     resetPassword, 
     renderResetPasswordPage,
     firebaseLogin,
-    payTax
+    payTax,
+    printReceipt
     
 
 };
