@@ -120,7 +120,7 @@
             const data = Object.fromEntries(formData.entries());
 
             try {
-                const response = await fetch('http://localhost:3100/api/admin/login', { // Adjust URL based on your route
+                const response = await fetch('https://atwap.vercel.app/api/admin/login', { // Adjust URL based on your route
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -134,7 +134,7 @@
                     document.getElementById('message').textContent = result.message;
                     document.getElementById('message').style.color = 'green';
                     // Optionally redirect to login page or another page
-                     window.location.href = 'http://localhost:3100/api/admin/getall';
+                     window.location.href = 'https://atwap.vercel.app/api/admin/getall';
                 } else {
                     document.getElementById('message').textContent = result.message;
                     document.getElementById('message').style.color = 'red';

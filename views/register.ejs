@@ -255,7 +255,7 @@ document.getElementById('signUpForm').addEventListener('submit', async function(
 const formDataObject = Object.fromEntries(formData.entries());
 
     try {
-        const response = await fetch('http://localhost:3100/api/auth/register', {
+        const response = await fetch('https://atwap.vercel.app/api/auth/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json' // Indicate JSON payload
@@ -269,7 +269,7 @@ const formDataObject = Object.fromEntries(formData.entries());
             // Success: Update UI or redirect
             document.getElementById('message').textContent = result.message || 'Registration successful!';
             document.getElementById('message').style.color = 'green';
-            window.location.href = `http://localhost:3100/api/auth/dashboard/${result.user.id}`;
+            window.location.href = `https://atwap.vercel.app/api/auth/dashboard/${result.user.id}`;
 
             // // Store token in localStorage if returned
             // if (result.token) {

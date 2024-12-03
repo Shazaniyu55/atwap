@@ -156,8 +156,8 @@ button:hover {
 
         <div class="side-nav">
             <ul>
-                <a href="http://localhost:3100/api/auth/dashboard/6747d68b50c3395feec687b2"><li class="remain" id="plan"><img src="/images/plan-svgrepo-com.png" alt="">Remit</li></a>
-                <a href="http://localhost:3100/api/auth/users/profile/6747d68b50c3395feec687b2"><li id="Top-up"><img src="/images/person.png" alt="">Profile</li></a>
+                <a href="https://atwap.vercel.app/api/auth/dashboard/6747d68b50c3395feec687b2"><li class="remain" id="plan"><img src="/images/plan-svgrepo-com.png" alt="">Remit</li></a>
+                <a href="https://atwap.vercel.app/api/auth/users/profile/6747d68b50c3395feec687b2"><li id="Top-up"><img src="/images/person.png" alt="">Profile</li></a>
 
             </ul>
         </div>
@@ -202,8 +202,8 @@ button:hover {
     <div class="tootop">
 
         <ul>
-            <li id="profile"><a href="http://localhost:3500/auth/users/profile/>"><img src="/images/profile-1335-svgrepo-com.png" alt=""> Profile</a></li>
-            <li id="logout"><a href="http://localhost:3500/logout"><img src="/images/power-symbol-svgrepo-com.png" alt=""> Logout</a></li>
+            <li id="profile"><a href="https://atwap.vercel.app/api/auth/users/profile/>"><img src="/images/profile-1335-svgrepo-com.png" alt=""> Profile</a></li>
+            <li id="logout"><a href="https://atwap.vercel.app/logout"><img src="/images/power-symbol-svgrepo-com.png" alt=""> Logout</a></li>
         </ul>
     
     </div>
@@ -222,7 +222,7 @@ button:hover {
         <p>Are you sure you want <span> to log out? </span></p>
 
         <div class="buts">
-            <button><a href="http://localhost:3500/logout">Logout</a></button>
+            <button><a href="https://atwap.vercel.app/logout">Logout</a></button>
             <button class="cancel">Cancel</button>
         </div>
     </div>
@@ -401,7 +401,7 @@ document.getElementById('signUpForm').addEventListener('submit', async function(
             try {
                 const token = localStorage.getItem('token');
                 console.log(token)
-                const response = await fetch('http://localhost:3100/api/auth/tax-create', { // Adjust URL based on your route
+                const response = await fetch('https://atwap.vercel.app/api/auth/tax-create', { // Adjust URL based on your route
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -415,7 +415,7 @@ document.getElementById('signUpForm').addEventListener('submit', async function(
                     document.getElementById('message').textContent = result.message;
                     document.getElementById('message').style.color = 'green';
                     // Optionally redirect to login page or another page
-                    window.location.href = 'http://localhost:3100/api/auth/subscriptionpop';
+                    window.location.href = 'https://atwap.vercel.app/api/auth/subscriptionpop';
                     //window.location.href = `http://localhost:3100/api/auth/dashboard/${result.user.id}`;
                     //localStorage.setItem('token', result.token)
 
