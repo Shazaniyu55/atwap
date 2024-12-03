@@ -7,7 +7,8 @@ const app = express();
 const authRoute = require("./routes/userroutes");
 const adminRoute = require("./routes/adminroutes");
 const mongoose = require("mongoose");
-const Blog  = require("./model/blog")
+const Blog  = require("./model/blog");
+const MongoStore = require('connect-mongo');
 const port = 3100;
 require('dotenv').config();
 
@@ -19,6 +20,7 @@ app.use(session({
     secret: process.env.SESSION_SECRETE,
     resave: false,
     saveUninitialized: true,
+    store:MongoStore.create({mongoUrl: process.env.MONGODB_CONNECTION}),
     cookie: {secure: false, }
     
 }));
