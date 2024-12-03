@@ -33,14 +33,7 @@ document.querySelector("#toback").addEventListener("mouseout", function(){
 
 
 
-document.getElementById("withdraw").addEventListener("click", function(){
-document.getElementById("withdraw").classList.add("active")
-document.getElementById("plan").classList.add("active")
-document.getElementById("upgrade").classList.remove("active")
 
-document.querySelector("#Top-up").classList.remove("active")
-document.querySelector(".vtu").classList.remove("active")
-})
 
 // document.getElementById("upgrade").addEventListener("click", function(){
 
@@ -101,35 +94,7 @@ document.querySelector(".dontsho").addEventListener("click", function(){
 
 
 
-document.querySelector(".logout").addEventListener("click", function(){
-    document.querySelector(".oveelayy").classList.toggle("active")
-    document.querySelector(".sure").classList.toggle("active")
-    document.querySelector("body").classList.toggle("active")
-    document.querySelector(".tools").classList.toggle("active")
-    document.querySelector(".pland").classList.toggle("highlight")
-    })
 
-
-    document.querySelector("#logout").addEventListener("click", function(){
-        document.querySelector(".oveelayy").classList.toggle("active")
-        document.querySelector(".sure").classList.toggle("active")
-        document.querySelector("body").classList.toggle("active")
-        document.querySelector(".tools").classList.toggle("active")
-        })
-    
-    document.querySelector(".cancel").addEventListener("click", function(){
-        // window.alert("kk")
-    document.querySelector(".oveelayy").classList.toggle("active")
-    document.querySelector(".sure").classList.toggle("active")
-    document.querySelector("body").classList.toggle("active")
-    document.querySelector(".tools").classList.toggle("active")
-    })
-    
-    
-    document.querySelector("#bell").addEventListener("click", function(){
-        document.querySelector(".noti-down").classList.toggle("active")
-        document.querySelector(".not").classList.add("active")
-        })
     
     
     // document.querySelector("#search").addEventListener("click", function(){
@@ -160,50 +125,51 @@ document.querySelector(".logout").addEventListener("click", function(){
 
     
 
-    // Function to apply dark mode classes
-    function applyDarkMode() {
-        document.getElementById("moon").classList.add("active");
-        document.getElementById("sun").classList.add("active");
-        document.querySelector("body").classList.add("highlight");
-        document.querySelector(".side-bar").classList.add("highlight");
-        document.querySelector(".tootop").classList.add("highlight");
-        document.querySelector(".nav").classList.add("highlight");
-        document.querySelector(".nav2").classList.add("highlight");
-        document.querySelector("input").classList.add("highlight");
-        document.querySelector("#searchbar").classList.add("highlight");
-        document.querySelector("#search").classList.add("highlight");
-    }
+    // // Function to apply dark mode classes
+    // function applyDarkMode() {
+    //     document.getElementById("moon").classList.add("active");
+    //     document.getElementById("sun").classList.add("active");
+    //     document.querySelector("body").classList.add("highlight");
+    //     document.querySelector(".side-bar").classList.add("highlight");
+    //     document.querySelector(".tootop").classList.add("highlight");
+    //     document.querySelector(".nav").classList.add("highlight");
+    //     document.querySelector(".nav2").classList.add("highlight");
+    //     document.querySelector("input").classList.add("highlight");
+    //     document.querySelector("#searchbar").classList.add("highlight");
+    //     document.querySelector("#search").classList.add("highlight");
+    // }
     
-    // Function to remove dark mode classes
-    function removeDarkMode() {
-        document.getElementById("moon").classList.remove("active");
-        document.getElementById("sun").classList.remove("active");
-        document.querySelector("body").classList.remove("highlight");
-        document.querySelector(".side-bar").classList.remove("highlight");
-        document.querySelector(".tootop").classList.remove("highlight");
-        document.querySelector(".nav").classList.remove("highlight");
-        document.querySelector(".nav2").classList.remove("highlight");
-        document.querySelector("input").classList.remove("highlight");
-        document.querySelector("#searchbar").classList.remove("highlight");
-        document.querySelector("#search").classList.remove("highlight");
-    }
+    // // Function to remove dark mode classes
+    // function removeDarkMode() {
+    //     document.getElementById("moon").classList.remove("active");
+    //     document.getElementById("sun").classList.remove("active");
+    //     document.querySelector("body").classList.remove("highlight");
+    //     document.querySelector(".side-bar").classList.remove("highlight");
+    //     document.querySelector(".tootop").classList.remove("highlight");
+    //     document.querySelector(".nav").classList.remove("highlight");
+    //     document.querySelector(".nav2").classList.remove("highlight");
+    //     document.querySelector("input").classList.remove("highlight");
+    //     document.querySelector("#searchbar").classList.remove("highlight");
+    //     document.querySelector("#search").classList.remove("highlight");
+    // }
     
-    // Check localStorage on page load to set the initial mode
-    if (localStorage.getItem("darkMode") === "enabled") {
-        applyDarkMode();
-    }
+    // // Check localStorage on page load to set the initial mode
+    // if (localStorage.getItem("darkMode") === "enabled") {
+    //     applyDarkMode();
+    // }
     
-    // Event listener for enabling dark mode
-    document.getElementById("moon").addEventListener("click", function() {
-        localStorage.setItem("darkMode", "enabled");
-        applyDarkMode();
-    });
+    // // Event listener for enabling dark mode
+    // document.getElementById("moon").addEventListener("click", function() {
+    //     localStorage.setItem("darkMode", "enabled");
+    //     applyDarkMode();
+    // });
     
-    // Event listener for disabling dark mode
-    document.getElementById("sun").addEventListener("click", function() {
-        localStorage.setItem("darkMode", "disabled");
-        removeDarkMode();
-    });
+    // // Event listener for disabling dark mode
+    // document.getElementById("sun").addEventListener("click", function() {
+    //     window.alert("kk")
+    //     localStorage.setItem("darkMode", "disabled");
+    //     removeDarkMode();
+    // });
 
 
 
