@@ -451,10 +451,10 @@ const payTax = async(req, res)=>{
         const newTax = new Tax(taxData);
         await newTax.save();
     
-        res.redirect('/taxes'); // Redirect to tax list page
+        res.status(200).json({status: "success", message: 'Payment successful'}); // Redirect to tax list page
       } catch (error) {
         console.error(error);
-        res.status(500).send('An error occurred while creating the tax record.');
+        res.status(500).json({status: "failed", message:'An error occurred while creating the tax record.'});
       }
 }
 

@@ -110,7 +110,7 @@
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="http://localhost:3100/api/admin/payment" class="menu-link">
+                  <a href="http://localhost:3100/api/admin/verify" class="menu-link">
                     <div data-i18n="Account">Users</div>
                   </a>
                 </li>
@@ -248,175 +248,13 @@
 
             <div class="container-xxl flex-grow-1 container-p-y">
               <div class="row gy-6">
-                <!-- Congratulations card -->
-                <div class="col-md-12 col-lg-4">
-                  <div class="card">
-                    <div class="card-body text-nowrap">
-                      <h5 class="card-title mb-0 flex-wrap text-nowrap">Total Money</h5>
-                      <h4 class="text-primary mb-0">
-                        <ul class="p-0 m-0">
-                          <% 
-                              
-                            let totalAmount = 0;
-                          %>
-                          <% subscribe.forEach(user => { %>
-                          
-                          <% 
-                              // Update total amount
-                              totalAmount += user.amount; 
-                          %>
-                          <% }) %>
-                          
-                          
-                          <h5 class="text-success mt-3">₦<%= totalAmount %></h5>
-                        </ul>
-
-
-                      </h4>
-                    </div>
-                    <img
-                      src="/images/trophy.png"
-                      class="position-absolute bottom-0 end-0 me-5 mb-5"
-                      width="83"
-                      alt="view sales" />
-                  </div>
-                </div>
-                <!--/ Congratulations card -->
+                
 
 
               
 
-                <!-- Transactions -->
-                <div class="col-lg-8">
-                  <div class="card h-100">
-                      <div class="card-header">
-                          <div class="d-flex align-items-center justify-content-between">
-                              <h5 class="card-title m-0 me-2">Transactions</h5>
-                              <div class="dropdown">
-                                  <button
-                                      class="btn text-muted p-0"
-                                      type="button"
-                                      id="transactionID"
-                                      data-bs-toggle="dropdown"
-                                      aria-haspopup="true"
-                                      aria-expanded="false">
-                                      <i class="ri-more-2-line ri-24px"></i>
-                                  </button>
-                                  <div class="dropdown-menu dropdown-menu-end" aria-labelledby="transactionID">
-                                      <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
-                                      <a class="dropdown-item" href="javascript:void(0);">Share</a>
-                                      <a class="dropdown-item" href="javascript:void(0);">Update</a>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="card-body pt-lg-10">
-                          <div class="row g-6">
-                              <div class="col-md-3 col-6">
-                                  <div class="d-flex align-items-center">
-                                      <div class="avatar">
-                                          <div class="avatar-initial bg-primary rounded shadow-xs">
-                                              <i class="ri-pie-chart-2-line ri-24px"></i>
-                                          </div>
-                                      </div>
-                                      <div class="ms-3">
-                                          <p class="mb-0">Total Subscriptions</p>
-                                          <h5 class="mb-0">₦<%= totalAmount %></h5>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-md-3 col-6">
-                                  <div class="d-flex align-items-center">
-                                      <div class="avatar">
-                                          <div class="avatar-initial bg-success rounded shadow-xs">
-                                              <i class="ri-group-line ri-24px"></i>
-                                          </div>
-                                      </div>
-                                      <div class="ms-3">
-                                          <p class="mb-0">Average Subscription</p>
-                                          <h5 class="mb-0">₦<%= averageSubscription.toFixed(2) %></h5>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-md-3 col-6">
-                                  <div class="d-flex align-items-center">
-                                      <div class="avatar">
-                                          <div class="avatar-initial bg-warning rounded shadow-xs">
-                                              <i class="ri-macbook-line ri-24px"></i>
-                                          </div>
-                                      </div>
-                                      <div class="ms-3">
-                                          <p class="mb-0">Total Transactions</p>
-                                          <h5 class="mb-0"><%= totalTransactions %></h5>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-md-3 col-6">
-                                  <div class="d-flex align-items-center">
-                                      <div class="avatar">
-                                          <div class="avatar-initial bg-info rounded shadow-xs">
-                                              <i class="ri-money-dollar-circle-line ri-24px"></i>
-                                          </div>
-                                      </div>
-                                      <div class="ms-3">
-                                          <p class="mb-0">Revenue</p>
-                                          <h5 class="mb-0">₦<%= totalAmount %></h5>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <!--/ Transactions -->
-         
-        
-
-
-                <!-- Deposit / Withdraw -->
-                <div class="col-xl-8">
-                  <div class="card-group">
-                    <div class="card mb-0">
-                      <div class="card-body card-separator">
-                        <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
-                          <h5 class="m-0 me-2">Deposit</h5>
-                        </div>
-                        <div class="deposit-content pt-2">
-                          
-
-                          <!--  -->
-
-                          
-                          <ul class="p-0 m-0">
-                            <% transac.forEach(user => { %>
-                            <li class="d-flex mb-4 align-items-center pb-2">
-                              <div class="flex-shrink-0 me-4">
-                                <!-- <img
-                                  src=""
-                                  class="img-fluid"
-                                  alt="gumroad"
-                                  height="30"
-                                  width="30" /> -->
-                              </div>
-                              <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                <div class="me-2">
-                                  <h6 class="mb-0"><%=  user.fullname %></h6>
-                                </div>
-                                <h6 class="text-success mb-0">+₦<%= user.amount%></h6>
-                              </div>
-                            </li>
-                            <% }) %>
-                            
-                            
-                            
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    
-                  </div>
-                </div>
-                <!-- Deposit / Withdraw -->
+                
+              
 
 
                 <!-- admin wallates -->
@@ -502,7 +340,7 @@
 
                 <!-- Data Tables -->
                 <div class="col-12">
-                  <h1>Users</h1>
+                  <h1>Payments</h1>
 
                   <div class="card overflow-hidden">
                     <div class="table-responsive">
@@ -512,32 +350,38 @@
                           <tr>
                             <th class="text-truncate">User</th>
                             <th class="text-truncate">Email</th>
-                            <th class="text-truncate">Role</th>
+                            <th class="text-truncate">Amount</th>
+                            <th class="text-truncate">Tax Type</th>
+
                             <th class="text-truncate">Action</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <% users.forEach(user => { %>
+                         
                           <tr>
                             <td>
                               <div class="d-flex align-items-center">
                                 
                                 <div>
-                                  <h6 class="mb-0 text-truncate"><%= user.fullname %></h6>
-                                  <small class="text-truncate"><%= user.email %></small>
+                                  <h6 class="mb-0 text-truncate">niyu</h6>
                                 </div>
                               </div>
                             </td>
-                            <td class="text-truncate"><%= user.email %></td>
+                            <td class="text-truncate">shazaniyu@gmail.com</td>
                             <td class="text-truncate">
                               <div class="d-flex align-items-center">
-                                <i class="ri-vip-crown-line ri-22px text-primary me-2"></i>
-                                <span>Member</span>
+                                <span>200</span>
                               </div>
                             </td>
+
+                            <td class="text-truncate">
+                                <div class="d-flex align-items-center">
+                                  <span>Annual</span>
+                                </div>
+                              </td>
                             <td>
-                              <form action="http://localhost:100/api/admin/remove/<%= user.id %>/delete" method="post">
-                                <button type="submit" class="btn btn-danger d-flex">Delete</button>
+                              <form action="http://localhost:100/api/admin/remove/1/delete" method="post">
+                                <button type="submit" class="btn btn-primary d-flex">Print</button>
                               </form>
                              
                             </td>
@@ -549,7 +393,7 @@
                          
                          
                           
-                          <% }) %>
+                        
                         </tbody>
                       </table>
                     </div>

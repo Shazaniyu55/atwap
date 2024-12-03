@@ -234,10 +234,10 @@ button:hover {
        
 
         <div class="basicE">
-
+          <p id="message"> </p>
             
             <div class="container">
-                <form action="http://localhost:3100/api/auth/tax-create" method="POST" enctype="multipart/form-data">
+                <form id="signUpForm"   enctype="multipart/form-data">
                   <div class="form-group">
                     <input type="text" id="userId" name="userId" value="6747d68b50c3395feec687b2" hidden>
                   </div>
@@ -389,28 +389,53 @@ button:hover {
 
     <script>
 
-document.addEventListener('DOMContentLoaded', function() {
-        // Function to show the preloader
-        function showPreloader() {
+document.getElementById('signUpForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent the default form submission
+                //show preloader
             document.getElementById('preloader').style.display = 'flex';
-        }
 
-        // Function to hide the preloader
-        function hidePreloader() {
-            document.getElementById('preloader').style.display = 'none';
-        }
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+       
+           
+            try {
+                const token = localStorage.getItem('token');
+                console.log(token)
+                const response = await fetch('http://localhost:3100/api/auth/tax-create', { // Adjust URL based on your route
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization':  `Bearer ${token}`                      },
+                    body: JSON.stringify(data),
+                });
 
-        // Attach event listeners to all forms
-        document.querySelectorAll('form').forEach(form => {
-            form.addEventListener('submit', function(event) {
-                showPreloader();
-                // Optional: You can handle hiding the preloader if the form submission fails or you handle it with AJAX.
-            });
+                const result = await response.json();
+
+                if (response.ok) {
+                    document.getElementById('message').textContent = result.message;
+                    document.getElementById('message').style.color = 'green';
+                    // Optionally redirect to login page or another page
+                    //window.location.href = `http://localhost:3100/api/auth/dashboard/${result.user.id}`;
+                    //localStorage.setItem('token', result.token)
+
+                } else {
+                    document.getElementById('message').textContent = result.message;
+                    document.getElementById('message').style.color = 'red';
+                }
+            } catch (error) {
+              console.log(error)
+                document.getElementById('message').textContent = 'An error occurred. Please try again.';
+                document.getElementById('message').style.color = 'red';
+            }finally{
+                //hode preloader
+                document.getElementById('preloader').style.display = 'none';
+            }
         });
-    });
+
+
         
 
-        </script>
+    </script>
     <script src="/js/dash.js"></script>
 
 
