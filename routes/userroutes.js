@@ -2,7 +2,8 @@
 const express = require('express');
 const router = express.Router();
 const User = require("../model/usermodel");
-const multer = require("multer")
+const multer = require("multer");
+const Tax = require("../model/tax");
 //all my controller imports 
 const 
 {
@@ -22,6 +23,8 @@ const storage = multer.memoryStorage(); // Store files in memory
 const upload = multer({ storage: storage });
 
 //all my routes
+
+
 
 //authentication routes
 router.post("/register",signUp);
@@ -53,10 +56,12 @@ router.post('/firebase-login', firebaseLogin)
 
 router.post('/tax-create',upload.single('paymentProof'), payTax)
 
-router.get('/subscriptionpop', (req, res)=>{
+router.get('/subscriptionpop', async(req, res)=>{
+    
     if (!req.session.user) {
         return res.redirect('/login'); // Redirect to login if not authenticated
       }
+
     res.render("suceesspop", { user: req.session.user })
 });
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -76,4 +76,43 @@
     <button class="print-button" onclick="window.print()">Print Receipt</button>
   </div>
 </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Receipt</title>
+  <link rel="stylesheet" href="/css/reciept.css">
+ 
+</head>
+<body>
+  <div class="receipt-container" id="receipt">
+    <div class="logo">
+      <img src="/images/logo.png" alt="">
+      <p>ATWAP</p>
+    </div>
+    <h1>Payment Receipt</h1>
+    <div class="info">
+      <p><strong>Receipt ID:</strong> <br> <%=receiptData.receiptId  %></p>
+      <p><strong>Name:</strong> <br> <%= receiptData.fullname %></p>
+      <p><strong>Email:</strong> </p>
+      <p><strong>Tax Type:</strong><br> <%= receiptData.taxType %></p>
+      <p><strong>Amount Paid:</strong> <br> ₦<%= receiptData.amount %> </p>
+      <p><strong>Payment Method:</strong> <br> <%= receiptData.paymentMethod %></p>
+      <p><strong>Date:</strong> <br> <%= receiptData.date %></p>
+      <p><strong>Status</strong> <br> Success</p>
+    </div>
+
+    <p class="appricate">Thanks for your payment</p>
+    <button onclick="window.print()">Print Receipt</button>
+    <button >Go Back To Homepage</button>
+  </div>
+
+  <script>
+
+  </script>
+</body>
 </html>
+

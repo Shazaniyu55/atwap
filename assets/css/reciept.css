@@ -1,0 +1,77 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root{
+    --chrome-yellow: hsl(39, 100%, 52%);
+    --winter-sky: hsl(0, 0%, 2%);
+    --winter-sky-hover: hsl(0, 0%, 20%);
+}
+*{ 
+  font-family: "Montserrat", sans-serif;
+}
+body {
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  margin-top: 50px;
+}
+
+.receipt-container {
+    margin-top: 0px;
+  background: var(--chrome-yellow);
+  /* max-height: 80vh; */
+  border-radius: 10px;
+  box-shadow: 0px 00px 10px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  padding-left: 30px;
+  width: 80%;
+  max-width: 900px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.receipt-container .logo{
+    display: inline-flex;
+}
+.receipt-container .logo img{
+    width: 60px;
+    margin-right: 10px;
+}
+.receipt-container .logo p{
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.receipt-container h1 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 40px;
+}
+
+.receipt-container .info {
+    text-align: left;
+  height: 80%;
+  margin-top: 10px;
+}
+
+.receipt-container .info p {
+  margin: 5px 0;
+  font-size: 0.95rem;
+  color: #000000;
+}
+
+.receipt-container button {
+  background-color: var(--winter-sky);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.receipt-container button:hover {
+  background-color: var(--winter-sky-hover);
+}
