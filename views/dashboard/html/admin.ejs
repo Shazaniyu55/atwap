@@ -10,6 +10,54 @@
     <link rel="stylesheet" href="/css/dashboard2.css">  
 
     <style>
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.popup-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+}
+
+.popup-content h2 {
+    margin: 0 0 10px;
+    color: #28a745;
+}
+
+.popup-content p {
+    margin: 0 0 20px;
+    font-size: 16px;
+    color: #333;
+}
+
+.popup-content button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.popup-content button:hover {
+    background-color: #218838;
+}
         /* General container styling */
 .container {
   max-width: 600px;
@@ -158,6 +206,7 @@ button:hover {
             <ul>
                 <a href="https://atwap.vercel.app/api/auth/dashboard/6747d68b50c3395feec687b2"><li class="remain" id="plan"><img src="/images/plan-svgrepo-com.png" alt="">Remit</li></a>
                 <a href="https://atwap.vercel.app/api/auth/users/profile/6747d68b50c3395feec687b2"><li id="Top-up"><img src="/images/person.png" alt="">Profile</li></a>
+                <a href="https://atwap.vercel.app/api/auth/users/receipt/6747d68b50c3395feec687b2"><li id="Top-up"><img src="/images/top-up-balance-svgrepo-com.png" alt="">Receipt</li></a>
 
             </ul>
         </div>
@@ -348,6 +397,14 @@ button:hover {
 
 
 
+<!-- Success Popup -->
+<div id="successPopup" class="popup">
+  <div class="popup-content">
+      <h2>Success</h2>
+      <p>Your remittance has been successfully submitted!</p>
+      <button id="closePopup">Close</button>
+  </div>
+</div>
 
 
 
@@ -389,49 +446,105 @@ button:hover {
 
     <script>
 
-document.getElementById('signUpForm').addEventListener('submit', async function(event) {
-            event.preventDefault(); // Prevent the default form submission
-                //show preloader
-            document.getElementById('preloader').style.display = 'flex';
 
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData.entries());
+document.getElementById('signUpForm').addEventListener('submit', async function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Show preloader
+    document.getElementById('preloader').style.display = 'flex';
+
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+        const token = localStorage.getItem('token');
+        console.log(token);
+        const response = await fetch('https://atwap.vercel.app/api/auth/tax-create', { // Adjust URL based on your route
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(data),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            document.getElementById('message').textContent = result.message;
+            document.getElementById('message').style.color = 'green';
+
+            // Show the success popup
+            const successPopup = document.getElementById('successPopup');
+            successPopup.style.display = 'flex';
+
+            // Optional: Redirect after a delay
+            setTimeout(() => {
+               // window.location.href = 'http://localhost:3100/api/auth/subscriptionpop';
+            }, 3000); // Redirect after 3 seconds
+        } else {
+            document.getElementById('message').textContent = result.message;
+            document.getElementById('message').style.color = 'red';
+        }
+    } catch (error) {
+        console.log(error);
+        document.getElementById('message').textContent = 'An error occurred. Please try again.';
+        document.getElementById('message').style.color = 'red';
+    } finally {
+        // Hide preloader
+        document.getElementById('preloader').style.display = 'none';
+    }
+});
+
+// Close the popup
+document.getElementById('closePopup').addEventListener('click', function() {
+    document.getElementById('successPopup').style.display = 'none';
+});
+
+
+// document.getElementById('signUpForm').addEventListener('submit', async function(event) {
+//             event.preventDefault(); // Prevent the default form submission
+//                 //show preloader
+//             document.getElementById('preloader').style.display = 'flex';
+
+//             const formData = new FormData(this);
+//             const data = Object.fromEntries(formData.entries());
        
            
-            try {
-                const token = localStorage.getItem('token');
-                console.log(token)
-                const response = await fetch('https://atwap.vercel.app/api/auth/tax-create', { // Adjust URL based on your route
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization':  `Bearer ${token}`                      },
-                    body: JSON.stringify(data),
-                });
+//             try {
+//                 const token = localStorage.getItem('token');
+//                 console.log(token)
+//                 const response = await fetch('https://atwap.vercel.app/api/auth/tax-create', { // Adjust URL based on your route
+//                     method: 'POST',
+//                     headers: {
+//                         'Content-Type': 'application/json',
+//                         'Authorization':  `Bearer ${token}`                      },
+//                     body: JSON.stringify(data),
+//                 });
 
-                const result = await response.json();
+//                 const result = await response.json();
 
-                if (response.ok) {
-                    document.getElementById('message').textContent = result.message;
-                    document.getElementById('message').style.color = 'green';
-                    // Optionally redirect to login page or another page
-                    window.location.href = 'https://atwap.vercel.app/api/auth/subscriptionpop';
-                    //window.location.href = `http://localhost:3100/api/auth/dashboard/${result.user.id}`;
-                    //localStorage.setItem('token', result.token)
+//                 if (response.ok) {
+//                     document.getElementById('message').textContent = result.message;
+//                     document.getElementById('message').style.color = 'green';
+//                     // Optionally redirect to login page or another page
+//                     window.location.href = 'https://atwap.vercel.app/api/auth/subscriptionpop';
+//                     //window.location.href = `http://localhost:3100/api/auth/dashboard/${result.user.id}`;
+//                     //localStorage.setItem('token', result.token)
 
-                } else {
-                    document.getElementById('message').textContent = result.message;
-                    document.getElementById('message').style.color = 'red';
-                }
-            } catch (error) {
-              console.log(error)
-                document.getElementById('message').textContent = 'An error occurred. Please try again.';
-                document.getElementById('message').style.color = 'red';
-            }finally{
-                //hode preloader
-                document.getElementById('preloader').style.display = 'none';
-            }
-        });
+//                 } else {
+//                     document.getElementById('message').textContent = result.message;
+//                     document.getElementById('message').style.color = 'red';
+//                 }
+//             } catch (error) {
+//               console.log(error)
+//                 document.getElementById('message').textContent = 'An error occurred. Please try again.';
+//                 document.getElementById('message').style.color = 'red';
+//             }finally{
+//                 //hode preloader
+//                 document.getElementById('preloader').style.display = 'none';
+//             }
+//         });
 
 
         

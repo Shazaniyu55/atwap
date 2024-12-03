@@ -52,6 +52,14 @@ router.get('/users/profile/:userId', async(req, res)=>{
     }
 })
 
+router.get('/users/receipt/:userId', (req, res)=>{
+   
+        res.render("dashboard/html/receipt",)
+
+ 
+})
+
+
 router.post('/firebase-login', firebaseLogin)
 
 router.post('/tax-create',upload.single('paymentProof'), payTax)
